@@ -173,8 +173,8 @@ const Blog = () => {
             {/* Search and Filter */}
             <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-                <Input placeholder="Search articles..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="pl-10 bg-card/80 backdrop-blur-sm border border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300" />
+                
+                
               </div>
               
               <div className="flex gap-2 flex-wrap justify-center md:justify-start">
@@ -189,7 +189,7 @@ const Blog = () => {
       </section>
 
       {/* Featured Posts */}
-      {featuredPosts.length > 0 && <section className="py-16 bg-gradient-to-br from-background to-muted/30">
+      {featuredPosts.length > 0 && <section className="bg-gradient-to-br from-background to-muted/30 my-0 py-[36px]">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 fade-in-up">Featured Articles</h2>
             
