@@ -103,11 +103,39 @@ const Blog = () => {
   ];
 
   useEffect(() => {
-    // Simulate loading
-    setTimeout(() => {
-      setPosts(samplePosts);
-      setLoading(false);
-    }, 1000);
+    const fetchPosts = async () => {
+      try {
+        const { supabase } = await import('@/integrations/supabase/client');
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .order('published_at', { ascending: false });
+        
+        if (error) throw error;
+        
+        const formattedPosts: BlogPost[] = data.map((post, index) => ({
+          id: index + 1, // Convert UUID to number for compatibility
+          title: post.title,
+          excerpt: post.excerpt,
+          content: post.content,
+          author: post.author,
+          date: post.published_at.split('T')[0],
+          readTime: post.read_time,
+          category: post.category,
+          image: post.image_url,
+          featured: post.featured
+        }));
+        
+        setPosts(formattedPosts);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        setPosts(samplePosts); // Fallback to sample posts
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   const categories = ['All', ...Array.from(new Set(posts.map(post => post.category)))];
@@ -168,7 +196,7 @@ const Blog = () => {
                   placeholder="Search articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 luxury-card border-0 bg-card/80 backdrop-blur-sm"
+                  className="pl-10 bg-card/80 backdrop-blur-sm border border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                 />
               </div>
               

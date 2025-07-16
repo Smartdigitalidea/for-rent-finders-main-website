@@ -10,6 +10,16 @@ const HeroSection = () => {
     setIsModalOpen(true);
   };
   return <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-secondary-glow via-background to-accent overflow-hidden pt-20">
+      {/* Hero Pattern Background */}
+      <div className="absolute inset-0 opacity-40" style={{
+        backgroundImage: 'var(--pattern-dots)',
+        backgroundSize: '40px 40px'
+      }}></div>
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: 'var(--pattern-grid)',
+        backgroundSize: '60px 60px'
+      }}></div>
+      
       {/* Luxury Background Elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary/20 to-gold/20 rounded-full blur-3xl floating"></div>
@@ -58,7 +68,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 fade-in-up" style={{
           animationDelay: '0.4s'
         }}>
-            <Button size="lg" onClick={() => handleCitySelect('Fort Lauderdale')} className="luxury-button border-0 text-primary-foreground px-10 py-6 text-xl font-bold rounded-2xl w-full sm:w-auto min-w-[250px] group">
+            <Button size="lg" onClick={() => handleCitySelect('Fort Lauderdale')} className="bg-gradient-to-r from-orange to-orange-glow hover:from-orange-glow hover:to-orange text-orange-foreground px-10 py-6 text-xl font-bold rounded-2xl shadow-orange hover:shadow-luxury transition-all duration-500 transform hover:scale-105 hover:translateY(-2px) w-full sm:w-auto min-w-[250px] group">
               <MapPin className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
               Fort Lauderdale
             </Button>

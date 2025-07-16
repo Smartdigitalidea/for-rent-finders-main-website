@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight, User, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useState, useEffect } from 'react';
 const BlogSection = () => {
-  const blogPosts = [{
+  const [blogPosts, setBlogPosts] = useState([{
     id: 1,
     title: "The Best Neighborhoods in Miami for Renters in 2025",
     excerpt: "Discover the top areas to rent in Miami this year, from affordable gems to luxury hotspots, complete with insider tips on what to expect...",
@@ -38,7 +39,40 @@ const BlogSection = () => {
     readTime: "6 min read",
     publishDate: "Jan 8, 2025",
     trending: true
-  }];
+  }]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const { supabase } = await import('@/integrations/supabase/client');
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .order('published_at', { ascending: false })
+          .limit(4);
+        
+        if (error) throw error;
+        
+        const formattedPosts = data.map((post, index) => ({
+          id: index + 1, // Convert UUID to number for compatibility
+          title: post.title,
+          excerpt: post.excerpt,
+          image: post.image_url,
+          category: post.category,
+          readTime: post.read_time,
+          publishDate: new Date(post.published_at).toLocaleDateString(),
+          trending: post.featured
+        }));
+        
+        setBlogPosts(formattedPosts);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+        // Keep default posts if fetch fails
+      }
+    };
+
+    fetchPosts();
+  }, []);
   return <section id="blog" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
@@ -118,7 +152,7 @@ const BlogSection = () => {
           {/* View all posts CTA */}
           <div className="text-center">
             <Link to="/blog">
-              <Button className="luxury-button border-0 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-2xl">
+              <Button className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-2xl shadow-elegant hover:shadow-luxury transition-all duration-500 transform hover:scale-105">
                 <TrendingUp className="w-5 h-5 mr-2" />
                 View All Articles
               </Button>

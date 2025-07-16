@@ -249,10 +249,18 @@ const LatestDealsSection = () => {
 
                 {/* Actions */}
                 <div className="flex gap-3">
-                  <Button className="flex-1 luxury-button border-0 text-primary-foreground font-semibold">
+                  <Button 
+                    onClick={() => window.open(`tel:855-367-7368`, '_self')}
+                    className="flex-1 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground font-semibold shadow-elegant hover:shadow-luxury transition-all duration-500"
+                  >
                     View Details
                   </Button>
-                  <Button variant="outline" size="icon" className="luxury-card border-border/50">
+                  <Button 
+                    onClick={() => window.open(`tel:855-367-7368`, '_self')}
+                    variant="outline" 
+                    size="icon" 
+                    className="bg-card hover:bg-primary/10 border-border/50 hover:border-primary/30 transition-all duration-300"
+                  >
                     <Phone className="w-4 h-4" />
                   </Button>
                 </div>
@@ -274,12 +282,20 @@ const LatestDealsSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="luxury-button border-0 text-primary-foreground px-8 py-4 text-lg font-semibold">
+              <Button 
+                onClick={() => window.open(`tel:855-367-7368`, '_self')}
+                size="lg" 
+                className="bg-gradient-to-r from-orange to-orange-glow hover:from-orange-glow hover:to-orange text-orange-foreground px-8 py-4 text-lg font-semibold shadow-orange hover:shadow-luxury transition-all duration-500 transform hover:scale-105"
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Call 855-FOR-RENT
               </Button>
               
-              <Button size="lg" variant="outline" className="luxury-card border-border/50 px-8 py-4 text-lg font-semibold hover:bg-primary/10">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="bg-card hover:bg-primary/10 border-border/50 hover:border-primary/30 px-8 py-4 text-lg font-semibold transition-all duration-300"
+              >
                 View All Deals
               </Button>
             </div>
