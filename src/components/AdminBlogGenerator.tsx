@@ -1,13 +1,13 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, FileText, CheckCircle, Calendar, BarChart3, AlertTriangle, DollarSign } from 'lucide-react';
+import { Loader2, FileText, CheckCircle, Calendar, BarChart3, AlertTriangle, DollarSign, Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminBlogGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
+  const [isManualGenerating, setIsManualGenerating] = useState(false);
   const [generatedPosts, setGeneratedPosts] = useState<any[]>([]);
   const [logs, setLogs] = useState<any[]>([]);
   const { toast } = useToast();
@@ -65,6 +65,48 @@ const AdminBlogGenerator = () => {
     }
   };
 
+  const generateManualPosts = async () => {
+    setIsManualGenerating(true);
+    setGeneratedPosts([]);
+
+    try {
+      const { supabase } = await import('@/integrations/supabase/client');
+      
+      toast({
+        title: "Inserting Manual Blog Posts",
+        description: "Adding 10 high-quality, pre-written blog posts to your site...",
+      });
+
+      const { data, error } = await supabase.functions.invoke('insert-manual-blog-posts');
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      toast({
+        title: "Success!",
+        description: `Successfully added ${data.posts_inserted || 10} blog posts to your site!`,
+      });
+
+      // Refresh the page or fetch updated posts
+      window.location.reload();
+
+    } catch (error) {
+      console.error('Error inserting manual blog posts:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to insert manual blog posts. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsManualGenerating(false);
+    }
+  };
+
   const fetchAutomationLogs = async () => {
     try {
       const { supabase } = await import('@/integrations/supabase/client');
@@ -94,6 +136,57 @@ const AdminBlogGenerator = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
+      {/* Manual Blog Generation Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Plus className="w-5 h-5" />
+            Quick Blog Posts (No API Required)
+          </CardTitle>
+          <CardDescription>
+            Get 10 high-quality, SEO-optimized blog posts instantly while you fix your DeepSeek API
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <CheckCircle className="w-4 h-4 text-green-600" />
+              <span className="font-medium text-green-800">Ready to Use</span>
+            </div>
+            <p className="text-sm text-green-700 mb-2">
+              10 pre-written, Miami/Fort Lauderdale focused blog posts ready to publish instantly.
+            </p>
+            <ul className="text-sm text-green-600 space-y-1 list-disc list-inside">
+              <li>Brickell City Centre apartment spotlight</li>
+              <li>Fort Lauderdale relocation guide</li>
+              <li>Family restaurants in Coral Gables</li>
+              <li>Miami Beach lifestyle guides</li>
+              <li>Neighborhood comparisons and more</li>
+            </ul>
+          </div>
+
+          <Button 
+            onClick={generateManualPosts} 
+            disabled={isManualGenerating}
+            className="w-full"
+            size="lg"
+          >
+            {isManualGenerating ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Adding Blog Posts...
+              </>
+            ) : (
+              <>
+                <Plus className="w-4 h-4 mr-2" />
+                Add 10 Blog Posts Now (Instant)
+              </>
+            )}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Existing DeepSeek API Card */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
