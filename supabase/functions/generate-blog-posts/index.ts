@@ -23,14 +23,42 @@ serve(async (req) => {
   }
 
   try {
+    const { testMode = false } = await req.json();
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    console.log('Starting immediate blog post generation with DeepSeek...');
+    console.log(`Starting blog post generation with DeepSeek API${testMode ? ' (TEST MODE - 2 posts only)' : ''}...`);
 
-    // South Florida focused blog topics similar to your examples
+    // Check DeepSeek API balance first
+    try {
+      const balanceResponse = await fetch('https://api.deepseek.com/v1/user/balance', {
+        headers: {
+          'Authorization': `Bearer ${deepseekApiKey}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (balanceResponse.ok) {
+        const balanceData = await balanceResponse.json();
+        console.log('DeepSeek Balance Check:', balanceData);
+        
+        if (balanceData.balance_infos?.[0]?.total_balance < 0.01) {
+          return new Response(
+            JSON.stringify({ 
+              error: 'Insufficient DeepSeek API balance. Please add credits at https://platform.deepseek.com/usage',
+              balance: balanceData.balance_infos?.[0]?.total_balance || 0
+            }),
+            { status: 402, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+          );
+        }
+      }
+    } catch (balanceError) {
+      console.log('Balance check failed, proceeding anyway:', balanceError.message);
+    }
+
+    // Miami/Fort Lauderdale focused blog topics
     const blogTopics = [
       {
         title: "Miami Apartment Spotlight: Brickell City Centre Living Experience",
@@ -94,11 +122,13 @@ serve(async (req) => {
       }
     ];
 
+    const postsToGenerate = testMode ? 2 : blogTopics.length;
+    const selectedTopics = blogTopics.slice(0, postsToGenerate);
     const generatedPosts = [];
 
-    for (let i = 0; i < blogTopics.length; i++) {
-      const topic = blogTopics[i];
-      console.log(`Generating blog post ${i + 1}/10: ${topic.title}`);
+    for (let i = 0; i < selectedTopics.length; i++) {
+      const topic = selectedTopics[i];
+      console.log(`Generating blog post ${i + 1}/${selectedTopics.length}: ${topic.title}`);
 
       const prompt = `Write a comprehensive, SEO-optimized blog post about "${topic.title}" for For Rent Finders, a South Florida rental company specializing in Miami and Fort Lauderdale.
 
@@ -153,82 +183,103 @@ COMPANY INTEGRATION:
 
 Create content that establishes For Rent Finders as THE authority on South Florida rentals while providing genuine value to readers.`;
 
-      const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${deepseekApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'deepseek-chat',
-          messages: [
-            { 
-              role: 'system', 
-              content: 'You are an expert real estate and rental market writer with deep knowledge of South Florida markets, specifically Miami and Fort Lauderdale. Create detailed, SEO-optimized blog posts that provide genuine local value to readers looking for rental properties. Write with authority, include specific local insights, and always provide actionable advice. Use a professional but approachable tone.' 
-            },
-            { role: 'user', content: prompt }
-          ],
-          temperature: 0.7,
-          max_tokens: 6000,
-          top_p: 0.9
-        }),
-      });
+      try {
+        const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${deepseekApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model: 'deepseek-chat',
+            messages: [
+              { 
+                role: 'system', 
+                content: 'You are an expert real estate and rental market writer with deep knowledge of South Florida markets, specifically Miami and Fort Lauderdale. Create detailed, SEO-optimized blog posts that provide genuine local value to readers looking for rental properties. Write with authority, include specific local insights, and always provide actionable advice. Use a professional but approachable tone.' 
+              },
+              { role: 'user', content: prompt }
+            ],
+            temperature: 0.7,
+            max_tokens: 6000,
+            top_p: 0.9
+          }),
+        });
 
-      if (!response.ok) {
-        console.error(`Failed to generate content for post ${i + 1}:`, await response.text());
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error(`Failed to generate content for post ${i + 1}:`, errorText);
+          
+          // If it's a balance issue, stop immediately and return helpful error
+          if (errorText.includes('Insufficient Balance') || errorText.includes('insufficient_quota')) {
+            return new Response(
+              JSON.stringify({ 
+                error: 'DeepSeek API ran out of credits during generation. Please add more credits at https://platform.deepseek.com/usage and try again.',
+                generated_so_far: generatedPosts.length,
+                failed_at_post: i + 1
+              }),
+              { status: 402, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+            );
+          }
+          continue;
+        }
+
+        const data = await response.json();
+        const content = data.choices[0].message.content;
+
+        // Generate excerpt from first paragraph
+        const excerptMatch = content.match(/<p>(.*?)<\/p>/);
+        const excerpt = excerptMatch 
+          ? excerptMatch[1].replace(/<[^>]*>/g, '').substring(0, 180) + '...'
+          : content.replace(/<[^>]*>/g, '').substring(0, 180) + '...';
+
+        // Estimate read time (average reading speed: 200 words per minute)
+        const wordCount = content.split(' ').length;
+        const readTime = Math.ceil(wordCount / 200);
+
+        const blogPost = {
+          title: topic.title,
+          excerpt: excerpt,
+          content: content,
+          category: topic.category,
+          image_url: topic.imageUrl,
+          featured: topic.featured,
+          read_time: `${readTime} min read`,
+          author: 'For Rent Finders Team'
+        };
+
+        // Insert into database
+        const { data: insertedPost, error } = await supabase
+          .from('blog_posts')
+          .insert(blogPost)
+          .select()
+          .single();
+
+        if (error) {
+          console.error(`Error inserting post ${i + 1}:`, error);
+          continue;
+        }
+
+        generatedPosts.push(insertedPost);
+        console.log(`✅ Successfully generated post ${i + 1}: ${topic.title}`);
+        console.log(`📊 Word count: ${wordCount}, Read time: ${readTime} min, Featured: ${topic.featured}`);
+
+        // Add delay to avoid rate limiting (reduced for faster generation)
+        if (i < selectedTopics.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+
+      } catch (error) {
+        console.error(`Error generating post ${i + 1}:`, error);
         continue;
       }
-
-      const data = await response.json();
-      const content = data.choices[0].message.content;
-
-      // Generate excerpt from first paragraph
-      const excerptMatch = content.match(/<p>(.*?)<\/p>/);
-      const excerpt = excerptMatch 
-        ? excerptMatch[1].replace(/<[^>]*>/g, '').substring(0, 180) + '...'
-        : content.replace(/<[^>]*>/g, '').substring(0, 180) + '...';
-
-      // Estimate read time (average reading speed: 200 words per minute)
-      const wordCount = content.split(' ').length;
-      const readTime = Math.ceil(wordCount / 200);
-
-      const blogPost = {
-        title: topic.title,
-        excerpt: excerpt,
-        content: content,
-        category: topic.category,
-        image_url: topic.imageUrl,
-        featured: topic.featured,
-        read_time: `${readTime} min read`,
-        author: 'For Rent Finders Team'
-      };
-
-      // Insert into database
-      const { data: insertedPost, error } = await supabase
-        .from('blog_posts')
-        .insert(blogPost)
-        .select()
-        .single();
-
-      if (error) {
-        console.error(`Error inserting post ${i + 1}:`, error);
-        continue;
-      }
-
-      generatedPosts.push(insertedPost);
-      console.log(`Successfully generated and saved post ${i + 1}: ${topic.title}`);
-      console.log(`Word count: ${wordCount}, Read time: ${readTime} min, Featured: ${topic.featured}`);
-
-      // Add delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 1500));
     }
 
-    console.log(`Generated ${generatedPosts.length}/10 blog posts successfully using DeepSeek`);
+    console.log(`🎉 Generated ${generatedPosts.length}/${selectedTopics.length} blog posts successfully using DeepSeek`);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: `Generated ${generatedPosts.length} South Florida focused blog posts successfully with DeepSeek`,
+        message: `Generated ${generatedPosts.length} South Florida focused blog posts successfully with DeepSeek${testMode ? ' (TEST MODE)' : ''}`,
         posts: generatedPosts.map(post => ({ 
           id: post.id, 
           title: post.title,
@@ -236,7 +287,8 @@ Create content that establishes For Rent Finders as THE authority on South Flori
           featured: post.featured 
         })),
         api_used: 'DeepSeek',
-        total_generated: generatedPosts.length
+        total_generated: generatedPosts.length,
+        test_mode: testMode
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );

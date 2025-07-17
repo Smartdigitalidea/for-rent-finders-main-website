@@ -2,49 +2,66 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, FileText, CheckCircle, Calendar, BarChart3, Clock } from 'lucide-react';
+import { Loader2, FileText, CheckCircle, Calendar, BarChart3, AlertTriangle, DollarSign } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminBlogGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
   const [generatedPosts, setGeneratedPosts] = useState<any[]>([]);
   const [logs, setLogs] = useState<any[]>([]);
   const { toast } = useToast();
 
-  const generateBlogPosts = async () => {
-    setIsGenerating(true);
+  const generateBlogPosts = async (testMode = false) => {
+    const setLoading = testMode ? setIsTesting : setIsGenerating;
+    setLoading(true);
     setGeneratedPosts([]);
 
     try {
       const { supabase } = await import('@/integrations/supabase/client');
       
       toast({
-        title: "Generating Blog Posts with DeepSeek",
-        description: "This may take a few minutes. Please wait...",
+        title: testMode ? "Testing DeepSeek API (2 posts)" : "Generating Blog Posts with DeepSeek",
+        description: testMode ? "Testing API connection..." : "This may take a few minutes. Please wait...",
       });
 
-      const { data, error } = await supabase.functions.invoke('generate-blog-posts');
+      const { data, error } = await supabase.functions.invoke('generate-blog-posts', {
+        body: { testMode }
+      });
 
       if (error) {
         throw error;
+      }
+
+      if (data.error) {
+        // Handle specific balance error
+        if (data.error.includes('Insufficient') || data.error.includes('credits')) {
+          toast({
+            title: "DeepSeek API Credits Needed",
+            description: "Please add credits to your DeepSeek account and try again.",
+            variant: "destructive",
+          });
+          return;
+        }
+        throw new Error(data.error);
       }
 
       setGeneratedPosts(data.posts || []);
       
       toast({
         title: "Success!",
-        description: `Generated ${data.posts?.length || 0} blog posts successfully with DeepSeek AI`,
+        description: `Generated ${data.posts?.length || 0} blog posts successfully with DeepSeek AI${testMode ? ' (TEST MODE)' : ''}`,
       });
 
     } catch (error) {
       console.error('Error generating blog posts:', error);
       toast({
         title: "Error",
-        description: "Failed to generate blog posts. Please try again.",
+        description: error.message || "Failed to generate blog posts. Please try again.",
         variant: "destructive",
       });
     } finally {
-      setIsGenerating(false);
+      setLoading(false);
     }
   };
 
@@ -84,28 +101,69 @@ const AdminBlogGenerator = () => {
             DeepSeek AI Blog Generator
           </CardTitle>
           <CardDescription>
-            Generate SEO-optimized blog posts using DeepSeek AI - faster and more cost-effective than OpenAI
+            Generate SEO-optimized blog posts using DeepSeek AI - 10x more cost-effective than OpenAI
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Button 
-            onClick={generateBlogPosts} 
-            disabled={isGenerating}
-            className="w-full"
-            size="lg"
-          >
-            {isGenerating ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Generating with DeepSeek AI...
-              </>
-            ) : (
-              <>
-                <FileText className="w-4 h-4 mr-2" />
-                Generate 10 Blog Posts with DeepSeek
-              </>
-            )}
-          </Button>
+          {/* Balance Warning */}
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <DollarSign className="w-4 h-4 text-amber-600" />
+              <span className="font-medium text-amber-800">DeepSeek API Credits Required</span>
+            </div>
+            <p className="text-sm text-amber-700 mb-2">
+              Make sure you have sufficient credits in your DeepSeek account before generating posts.
+            </p>
+            <a 
+              href="https://platform.deepseek.com/usage" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-amber-800 underline hover:text-amber-900"
+            >
+              Check/Add Credits at DeepSeek Platform →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Button 
+              onClick={() => generateBlogPosts(true)} 
+              disabled={isGenerating || isTesting}
+              variant="outline"
+              size="lg"
+              className="w-full"
+            >
+              {isTesting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Testing API (2 posts)...
+                </>
+              ) : (
+                <>
+                  <AlertTriangle className="w-4 h-4 mr-2" />
+                  Test API (2 posts)
+                </>
+              )}
+            </Button>
+
+            <Button 
+              onClick={() => generateBlogPosts(false)} 
+              disabled={isGenerating || isTesting}
+              className="w-full"
+              size="lg"
+            >
+              {isGenerating ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Generating 10 posts...
+                </>
+              ) : (
+                <>
+                  <FileText className="w-4 h-4 mr-2" />
+                  Generate 10 Blog Posts
+                </>
+              )}
+            </Button>
+          </div>
 
           {generatedPosts.length > 0 && (
             <div className="mt-6">
