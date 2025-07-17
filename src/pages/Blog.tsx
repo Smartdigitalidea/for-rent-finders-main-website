@@ -27,7 +27,7 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [loading, setLoading] = useState(true);
 
-  // Sample blog posts - in real app, this would come from your ChatGPT API
+  // Sample blog posts as fallback
   const samplePosts: BlogPost[] = [
     {
       id: '1',
@@ -110,6 +110,7 @@ const Blog = () => {
         const { data, error } = await supabase
           .from('blog_posts')
           .select('*')
+          .eq('status', 'published')
           .order('published_at', { ascending: false });
         
         if (error) throw error;
@@ -128,6 +129,24 @@ const Blog = () => {
         }));
         
         setPosts(formattedPosts);
+
+        // Set up real-time subscription
+        const channel = supabase
+          .channel('blog_posts_all')
+          .on('postgres_changes', {
+            event: '*',
+            schema: 'public',
+            table: 'blog_posts',
+            filter: 'status=eq.published'
+          }, () => {
+            // Refetch posts when there are changes
+            fetchPosts();
+          })
+          .subscribe();
+
+        return () => {
+          supabase.removeChannel(channel);
+        };
       } catch (error) {
         console.error('Error fetching posts:', error);
         setPosts(samplePosts); // Fallback to sample posts
@@ -292,7 +311,10 @@ const Blog = () => {
                     <img 
                       src={post.image} 
                       alt={post.title} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/placeholder.svg';
+                      }}
                     />
                   </div>
                   

@@ -1,7 +1,9 @@
+
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight, User, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
+
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState([{
     id: '1',
@@ -40,19 +42,20 @@ const BlogSection = () => {
     publishDate: "Jan 8, 2025",
     trending: true
   }]);
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const {
-          supabase
-        } = await import('@/integrations/supabase/client');
-        const {
-          data,
-          error
-        } = await supabase.from('blog_posts').select('*').order('published_at', {
-          ascending: false
-        }).limit(4);
+        const { supabase } = await import('@/integrations/supabase/client');
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .eq('status', 'published')
+          .order('published_at', { ascending: false })
+          .limit(4);
+
         if (error) throw error;
+
         const formattedPosts = data.map(post => ({
           id: post.id,
           title: post.title,
@@ -63,15 +66,37 @@ const BlogSection = () => {
           publishDate: new Date(post.published_at).toLocaleDateString(),
           trending: post.featured
         }));
+
         setBlogPosts(formattedPosts);
+
+        // Set up real-time subscription
+        const channel = supabase
+          .channel('blog_posts_public')
+          .on('postgres_changes', {
+            event: '*',
+            schema: 'public',
+            table: 'blog_posts',
+            filter: 'status=eq.published'
+          }, () => {
+            // Refetch posts when there are changes
+            fetchPosts();
+          })
+          .subscribe();
+
+        return () => {
+          supabase.removeChannel(channel);
+        };
       } catch (error) {
         console.error('Error fetching blog posts:', error);
         // Keep default posts if fetch fails
       }
     };
+
     fetchPosts();
   }, []);
-  return <section id="blog" className="py-20 bg-white">
+
+  return (
+    <section id="blog" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
@@ -89,10 +114,18 @@ const BlogSection = () => {
 
           {/* Blog posts grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {blogPosts.map(post => <Link key={post.id} to={`/blog/${post.id}`}>
+            {blogPosts.map(post => (
+              <Link key={post.id} to={`/blog/${post.id}`}>
                 <article className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden group cursor-pointer">
                   <div className="relative">
-                    <img src={post.image} alt={post.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300" />
+                    <img 
+                      src={post.image} 
+                      alt={post.title} 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/placeholder.svg';
+                      }}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
                     
                     {/* Category and trending badge */}
@@ -100,10 +133,12 @@ const BlogSection = () => {
                       <span className="bg-[#3384B3] text-white px-3 py-1 rounded-full text-xs font-medium">
                         {post.category}
                       </span>
-                      {post.trending && <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
+                      {post.trending && (
+                        <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3" />
                           <span>Trending</span>
-                        </span>}
+                        </span>
+                      )}
                     </div>
 
                     {/* Read time */}
@@ -143,7 +178,8 @@ const BlogSection = () => {
                     </div>
                   </div>
                 </article>
-              </Link>)}
+              </Link>
+            ))}
           </div>
 
           {/* View all posts CTA */}
@@ -157,6 +193,8 @@ const BlogSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default BlogSection;

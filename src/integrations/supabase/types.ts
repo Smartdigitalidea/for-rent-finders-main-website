@@ -62,8 +62,15 @@ export type Database = {
           featured: boolean
           id: string
           image_url: string
+          keywords: string[] | null
+          meta_description: string | null
+          meta_title: string | null
           published_at: string
           read_time: string
+          scheduled_at: string | null
+          slug: string | null
+          status: string | null
+          tags: string[] | null
           title: string
           updated_at: string
         }
@@ -76,8 +83,15 @@ export type Database = {
           featured?: boolean
           id?: string
           image_url: string
+          keywords?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
           published_at?: string
           read_time?: string
+          scheduled_at?: string | null
+          slug?: string | null
+          status?: string | null
+          tags?: string[] | null
           title: string
           updated_at?: string
         }
@@ -90,8 +104,15 @@ export type Database = {
           featured?: boolean
           id?: string
           image_url?: string
+          keywords?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
           published_at?: string
           read_time?: string
+          scheduled_at?: string | null
+          slug?: string | null
+          status?: string | null
+          tags?: string[] | null
           title?: string
           updated_at?: string
         }
@@ -102,7 +123,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_slug: {
+        Args: { title_text: string }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
