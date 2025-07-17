@@ -1,7 +1,7 @@
 import { Shield, Users, Award, Heart } from 'lucide-react';
 const AboutSection = () => {
   return <section id="about" className="bg-gray-50 py-0">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 my-[40px]">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-16">
