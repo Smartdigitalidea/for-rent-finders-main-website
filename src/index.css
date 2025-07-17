@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -85,19 +86,12 @@
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -105,48 +99,35 @@
     /* Dark Luxury Theme */
     --background: 220 39% 7%;
     --foreground: 210 40% 98%;
-
     --card: 220 39% 9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 220 39% 9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 100% 67%;
     --primary-foreground: 220 39% 7%;
     --primary-glow: 210 100% 83%;
     --primary-deep: 210 100% 53%;
-
     --secondary: 220 39% 15%;
     --secondary-foreground: 210 40% 98%;
     --secondary-glow: 220 39% 20%;
-
     --muted: 220 39% 12%;
     --muted-foreground: 215 20% 65%;
-
     --accent: 220 39% 15%;
     --accent-foreground: 210 40% 98%;
-
     --gold: 45 95% 65%;
     --gold-foreground: 220 39% 7%;
     --gold-glow: 45 95% 75%;
-
     --destructive: 0 62% 50%;
     --destructive-foreground: 210 40% 98%;
     --success: 142 76% 46%;
     --success-foreground: 210 40% 98%;
-
     --border: 220 39% 15%;
     --input: 220 39% 12%;
     --ring: 210 100% 67%;
-
-    /* Dark Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
     --gradient-luxury: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary-glow)) 50%, hsl(var(--gold)) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 50%, hsl(var(--primary) / 0.1) 100%);
     --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--secondary)) 100%);
-
-    /* Dark Shadows */
     --shadow-luxury: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
     --shadow-card: 0 10px 30px -5px hsl(0 0% 0% / 0.3);
@@ -168,21 +149,75 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-body antialiased;
     background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--muted)));
   }
 
   html {
     scroll-behavior: smooth;
   }
+
+  /* Typography System */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  p, span, div, li {
+    @apply font-body;
+  }
 }
 
-/* Luxury Animations & Effects */
+/* Background Patterns & Effects */
 @layer utilities {
+  /* Glow Effects */
   .luxury-glow {
     box-shadow: var(--shadow-glow);
   }
 
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+  }
+
+  .card-glow {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.2);
+  }
+
+  .orange-glow {
+    box-shadow: 0 0 30px hsl(var(--orange) / 0.3);
+  }
+
+  /* Pattern Backgrounds */
+  .pattern-bubbles {
+    background-image: radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.12) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, hsl(var(--orange) / 0.12) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 40%, hsl(var(--secondary) / 0.08) 0%, transparent 50%);
+  }
+
+  .pattern-waves {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233384B3' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-dots {
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .pattern-grid {
+    background-image: linear-gradient(hsl(var(--border) / 0.1) 1px, transparent 1px), 
+                      linear-gradient(90deg, hsl(var(--border) / 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Floating Elements */
+  .floating-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--orange) / 0.1));
+    animation: bubble-float 15s infinite linear;
+    pointer-events: none;
+  }
+
+  /* Enhanced Card Styles */
   .luxury-card {
     background: var(--gradient-card);
     box-shadow: var(--shadow-card);
@@ -190,6 +225,28 @@
     border: 1px solid hsl(var(--border) / 0.5);
   }
 
+  .how-it-works-card {
+    @apply luxury-card;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .how-it-works-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .how-it-works-card:hover::before {
+    left: 100%;
+  }
+
+  /* Button Enhancements */
   .luxury-button {
     background: var(--gradient-primary);
     box-shadow: var(--shadow-elegant);
@@ -218,6 +275,7 @@
     box-shadow: var(--shadow-luxury);
   }
 
+  /* Animation Classes */
   .fade-in-up {
     animation: fadeInUp 0.8s ease-out;
   }
@@ -239,6 +297,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  .floating {
+    animation: float 3s ease-in-out infinite;
   }
 }
 
@@ -282,8 +344,4 @@
   50% {
     transform: translateY(-10px);
   }
-}
-
-.floating {
-  animation: float 3s ease-in-out infinite;
 }
