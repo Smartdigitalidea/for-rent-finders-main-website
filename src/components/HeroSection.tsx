@@ -1,49 +1,44 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { MapPin, Star, Users } from 'lucide-react';
 import SurveyModal from './SurveyModal';
-
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState('');
-
   const handleCitySelect = (city: string) => {
     setSelectedCity(city);
     setIsModalOpen(true);
   };
-
-  return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20" style={{
-      background: 'linear-gradient(135deg, #7EB1CF 0%, #F8FCFD 35%, #AAD1E0 65%, #F8FCFD 100%)'
-    }}>
+  return <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20" style={{
+    background: 'linear-gradient(135deg, #7EB1CF 0%, #F8FCFD 35%, #AAD1E0 65%, #F8FCFD 100%)'
+  }}>
       {/* Premium Background Patterns */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
-          backgroundImage: `
+        backgroundImage: `
             radial-gradient(circle at 25px 25px, rgba(126, 177, 207, 0.15) 2px, transparent 2px),
             radial-gradient(circle at 75px 75px, rgba(170, 209, 224, 0.15) 2px, transparent 2px)
           `,
-          backgroundSize: '100px 100px, 150px 150px'
-        }}></div>
+        backgroundSize: '100px 100px, 150px 150px'
+      }}></div>
         <div className="absolute inset-0" style={{
-          backgroundImage: `
+        backgroundImage: `
             linear-gradient(rgba(126, 177, 207, 0.05) 1px, transparent 1px),
             linear-gradient(90deg, rgba(170, 209, 224, 0.05) 1px, transparent 1px)
           `,
-          backgroundSize: '50px 50px'
-        }}></div>
+        backgroundSize: '50px 50px'
+      }}></div>
       </div>
       
       {/* Luxury Background Elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#7EB1CF]/30 to-[#AAD1E0]/30 rounded-full blur-3xl floating"></div>
         <div className="absolute top-60 right-20 w-80 h-80 bg-gradient-to-br from-[#AAD1E0]/40 to-[#7EB1CF]/40 rounded-full blur-3xl floating" style={{
-          animationDelay: '1s'
-        }}></div>
+        animationDelay: '1s'
+      }}></div>
         <div className="absolute bottom-20 left-1/4 w-64 h-64 bg-gradient-to-br from-[#F8FCFD]/30 to-[#7EB1CF]/30 rounded-full blur-3xl floating" style={{
-          animationDelay: '2s'
-        }}></div>
+        animationDelay: '2s'
+      }}></div>
       </div>
 
       <div className="container mx-auto relative z-10 my-[60px] px-[16px] py-[50px]">
@@ -58,7 +53,7 @@ const HeroSection = () => {
               <Users className="w-4 h-4 md:w-5 md:h-5 text-primary" />
               <span className="font-semibold text-foreground text-sm md:text-base">300+ Happy Renters</span>
             </div>
-            <div className="bg-gradient-to-r from-success to-success/80 text-success-foreground px-3 md:px-6 py-2 md:py-3 rounded-full font-semibold shadow-lg whitespace-nowrap text-sm md:text-base">
+            <div className="bg-gradient-to-r from-success to-success/80 text-success-foreground px-3 md:px-6 py-2 md:py-3 rounded-full font-semibold shadow-lg whitespace-nowrap text-sm md:text-base bg-[#dcfce6]">
               100% Free Service
             </div>
           </div>
@@ -73,16 +68,16 @@ const HeroSection = () => {
 
           {/* Subheadline */}
           <p style={{
-            animationDelay: '0.2s'
-          }} className="text-xl md:text-2xl text-muted-foreground mb-16 max-w-4xl mx-auto leading-relaxed fade-in-up lg:text-2xl">
+          animationDelay: '0.2s'
+        }} className="text-xl md:text-2xl text-muted-foreground mb-16 max-w-4xl mx-auto leading-relaxed fade-in-up lg:text-2xl">
             We help renters like you get matched with the perfect apartment — all for free. 
             <span className="text-primary font-semibold"> Expert local knowledge, personalized service, stress-free experience.</span>
           </p>
 
           {/* City selection buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 fade-in-up" style={{
-            animationDelay: '0.4s'
-          }}>
+          animationDelay: '0.4s'
+        }}>
             <Button size="lg" onClick={() => handleCitySelect('Fort Lauderdale')} className="bg-gradient-to-r from-orange to-orange-glow hover:from-orange-glow hover:to-orange text-orange-foreground px-10 py-6 text-xl font-bold rounded-2xl shadow-orange hover:shadow-luxury transition-all duration-500 transform hover:scale-105 hover:translateY(-2px) w-full sm:w-auto min-w-[250px] group">
               <MapPin className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
               Fort Lauderdale
@@ -98,8 +93,8 @@ const HeroSection = () => {
 
           {/* Features highlight */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto fade-in-up" style={{
-            animationDelay: '0.6s'
-          }}>
+          animationDelay: '0.6s'
+        }}>
             <div className="luxury-card p-8 rounded-3xl group hover:luxury-glow transition-all duration-500 hover:scale-105">
               <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🏠</div>
               <h3 className="font-bold text-xl text-foreground mb-4 group-hover:text-primary transition-colors">Local Expertise</h3>
@@ -107,16 +102,16 @@ const HeroSection = () => {
             </div>
             
             <div className="luxury-card p-8 rounded-3xl group hover:luxury-glow transition-all duration-500 hover:scale-105" style={{
-              animationDelay: '0.1s'
-            }}>
+            animationDelay: '0.1s'
+          }}>
               <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">💯</div>
               <h3 className="font-bold text-xl text-foreground mb-4 group-hover:text-primary transition-colors">100% Free Service</h3>
               <p className="text-muted-foreground leading-relaxed">No hidden fees, no charges. We're paid by landlords, not renters. Your satisfaction is our priority.</p>
             </div>
             
             <div className="luxury-card p-8 rounded-3xl group hover:luxury-glow transition-all duration-500 hover:scale-105" style={{
-              animationDelay: '0.2s'
-            }}>
+            animationDelay: '0.2s'
+          }}>
               <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">⚡</div>
               <h3 className="font-bold text-xl text-foreground mb-4 group-hover:text-primary transition-colors">Lightning Fast Results</h3>
               <p className="text-muted-foreground leading-relaxed">Get matched with premium apartments within 24 hours of your inquiry. Time is precious, we respect that.</p>
@@ -126,8 +121,6 @@ const HeroSection = () => {
       </div>
 
       <SurveyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} city={selectedCity} />
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
