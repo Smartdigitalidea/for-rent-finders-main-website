@@ -61,10 +61,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img src="/lovable-uploads/0dde1237-ad75-4dbf-b3d5-b708ed17ff71.png" alt="For Rent Finders Logo" className="h-12 w-auto" />
-            <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-800">For Rent Finders</h1>
-              <p className="text-sm text-gray-600">Miami | Broward Apartments</p>
-            </div>
+            
           </div>
 
           {/* Desktop Navigation */}
