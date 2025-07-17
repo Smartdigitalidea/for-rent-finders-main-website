@@ -28,68 +28,68 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    console.log('Starting bulk blog post generation with DeepSeek...');
+    console.log('Starting immediate blog post generation with DeepSeek...');
 
-    // Updated blog topics with current 2025 trends and DeepSeek optimization
+    // South Florida focused blog topics similar to your examples
     const blogTopics = [
       {
-        title: "Miami Rental Market Forecast 2025: Expert Predictions and Trends",
-        category: "Market Analysis",
+        title: "Miami Apartment Spotlight: Brickell City Centre Living Experience",
+        category: "Apartment Spotlight",
         imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
         featured: true
       },
       {
-        title: "Complete Guide to Renting with Pets in South Florida 2025",
-        category: "Pet-Friendly Living",
-        imageUrl: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=800&q=80",
+        title: "Exploring the Best Miami Beach Rooftop Bars and Lounges",
+        category: "Lifestyle & Entertainment",
+        imageUrl: "https://images.unsplash.com/photo-1544966503-7ad532bf1d64?auto=format&fit=crop&w=800&q=80",
         featured: false
       },
       {
-        title: "Smart Home Technology: Must-Have Features for Modern Renters",
-        category: "Technology",
-        imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
+        title: "Should I Move To Fort Lauderdale? Complete 2025 Guide",
+        category: "Relocation Guide",
+        imageUrl: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=800&q=80",
         featured: true
       },
       {
-        title: "Hurricane Season 2025: Rental Insurance and Emergency Preparedness Guide",
-        category: "Safety & Insurance",
-        imageUrl: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=800&q=80",
+        title: "Family-Friendly Restaurants in Coral Gables Every Parent Should Know",
+        category: "Family Living",
+        imageUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
         featured: false
       },
       {
-        title: "Co-Living Revolution: The Future of Urban Rental Living in Miami",
-        category: "Living Trends",
+        title: "Fort Lauderdale Apartment Spotlight: Las Olas Boulevard Luxury Living",
+        category: "Apartment Spotlight",
+        imageUrl: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+        featured: true
+      },
+      {
+        title: "The Ultimate Guide to Finding Your Perfect Apartment in Miami 2025",
+        category: "Apartment Hunting",
+        imageUrl: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80",
+        featured: false
+      },
+      {
+        title: "Exploring Miami: 15 Free Activities Every Renter Should Experience",
+        category: "Budget Living",
+        imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
+        featured: false
+      },
+      {
+        title: "Wynwood District Living: Miami's Coolest Neighborhood for Young Professionals",
+        category: "Neighborhood Guide",
         imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
-        featured: false
-      },
-      {
-        title: "Electric Vehicle Charging: How It's Reshaping Apartment Hunting",
-        category: "Sustainability",
-        imageUrl: "https://images.unsplash.com/photo-1593941707882-a5bac6861d75?auto=format&fit=crop&w=800&q=80",
         featured: true
       },
       {
-        title: "Remote Work Revolution: Finding the Perfect Home Office Setup",
+        title: "Best Coffee Shops in South Beach for Remote Workers and Students",
         category: "Remote Work",
         imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
         featured: false
       },
       {
-        title: "Gen Z Rental Preferences: What Young Renters Want in 2025",
-        category: "Demographics",
-        imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
-        featured: false
-      },
-      {
-        title: "Luxury vs Location: Making Smart Trade-offs in Today's Market",
-        category: "Decision Making",
-        imageUrl: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
-        featured: true
-      },
-      {
-        title: "Digital Revolution: Virtual Tours and Online Lease Signing Guide",
-        category: "Technology",
-        imageUrl: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80",
+        title: "Aventura vs Brickell: Which Miami Neighborhood Fits Your Lifestyle?",
+        category: "Neighborhood Comparison",
+        imageUrl: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=800&q=80",
         featured: false
       }
     ];
@@ -100,39 +100,58 @@ serve(async (req) => {
       const topic = blogTopics[i];
       console.log(`Generating blog post ${i + 1}/10: ${topic.title}`);
 
-      const prompt = `Write a comprehensive, SEO-optimized blog post about "${topic.title}" for a South Florida rental company specializing in Miami and Fort Lauderdale.
+      const prompt = `Write a comprehensive, SEO-optimized blog post about "${topic.title}" for For Rent Finders, a South Florida rental company specializing in Miami and Fort Lauderdale.
 
 CONTENT REQUIREMENTS:
 - 1200-1800 words (authoritative and detailed)
-- Current 2025 market data and trends
-- Expert-level insights for renters
-- Actionable tips and practical advice
-- Local South Florida market knowledge
-- Professional, helpful tone
+- Target audience: People looking for apartments in Miami/Fort Lauderdale
+- Include current 2025 market insights and local knowledge
+- Professional, helpful, and engaging tone
+- Actionable advice and insider tips
 
-STRUCTURE & FORMATTING:
-- Compelling introduction with current market context
-- 4-5 main sections with <h2> headings
+STRUCTURE & SEO:
+- Compelling introduction with hook and local context
+- 4-5 main sections with descriptive <h2> headings
 - Subsections with <h3> headings where needed
-- Use <p>, <ul>, <li>, <strong> tags for proper HTML structure
+- Use proper HTML: <p>, <ul>, <li>, <strong>, <em> tags
 - Include bullet points for key takeaways
-- End with strong call-to-action for "For Rent Finders"
+- Meta description worthy excerpt in opening
+- Local SEO keywords naturally integrated
 
-CONTENT FOCUS:
-- Include specific Miami/Fort Lauderdale neighborhoods and areas
-- Address current rental market challenges and opportunities
-- Provide insider knowledge and expert tips
-- Include relevant statistics and market insights
-- Make content highly scannable and valuable
-- Address common renter concerns and questions
+CONTENT FOCUS FOR "${topic.category}":
+${topic.category === 'Apartment Spotlight' ? 
+  '- Detailed building/area overview with amenities, pricing insights, nearby attractions\n- Transportation options and walkability scores\n- Resident lifestyle and community features\n- Comparison with similar properties in the area' :
+topic.category === 'Lifestyle & Entertainment' ?
+  '- Specific venues with addresses, hours, and pricing\n- Local insider tips and hidden gems\n- Best times to visit and what to expect\n- Transportation and parking information' :
+topic.category === 'Relocation Guide' ?
+  '- Cost of living breakdown with real numbers\n- Job market insights and major employers\n- Neighborhoods overview with pros/cons\n- Weather, culture, and lifestyle considerations' :
+topic.category === 'Family Living' ?
+  '- Kid-friendly menu options and pricing\n- Location details and parking information\n- Age-appropriate activities and amenities\n- Safety and cleanliness considerations' :
+topic.category === 'Apartment Hunting' ?
+  '- Step-by-step process with timelines\n- Required documentation and credit requirements\n- Market timing and negotiation strategies\n- Red flags to avoid and questions to ask' :
+topic.category === 'Budget Living' ?
+  '- Specific activity details with costs (free!)\n- Best times to visit and seasonal considerations\n- Transportation options and accessibility\n- Pro tips for maximizing the experience' :
+topic.category === 'Neighborhood Guide' ?
+  '- Demographic and lifestyle overview\n- Housing costs and apartment availability\n- Local businesses, restaurants, and nightlife\n- Transportation and commute options' :
+topic.category === 'Remote Work' ?
+  '- WiFi quality, power outlets, and workspace setup\n- Operating hours, pricing, and membership options\n- Noise levels and professional atmosphere\n- Location and parking details' :
+  '- Detailed comparison of lifestyle, costs, amenities\n- Demographics and target residents\n- Transportation and accessibility\n- Investment potential and market trends'
+}
+
+LOCAL EXPERTISE:
+- Include specific Miami/Fort Lauderdale streets, buildings, and landmarks
+- Reference actual neighborhoods like Brickell, South Beach, Las Olas, Aventura
+- Mention local transportation (Metromover, Brightline, etc.)
+- Include current market data and pricing insights
+- Address hurricane season, beach lifestyle, and tropical climate
 
 COMPANY INTEGRATION:
-- Naturally mention "For Rent Finders" services throughout
-- Position as local market experts and rental assistance specialists
-- Include compelling call-to-action encouraging readers to contact the company
-- Emphasize local expertise and personalized service
+- Naturally mention "For Rent Finders" as local experts 2-3 times
+- Position as insider knowledge source with years of local experience
+- Include strong call-to-action encouraging readers to contact For Rent Finders
+- Emphasize personalized service and local market expertise
 
-Create content that establishes authority, provides genuine value, and encourages readers to choose For Rent Finders for their rental needs.`;
+Create content that establishes For Rent Finders as THE authority on South Florida rentals while providing genuine value to readers.`;
 
       const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
         method: 'POST',
@@ -145,7 +164,7 @@ Create content that establishes authority, provides genuine value, and encourage
           messages: [
             { 
               role: 'system', 
-              content: 'You are an expert real estate and rental market writer with deep knowledge of South Florida markets. Create detailed, SEO-optimized blog posts that provide genuine value to readers looking for rental properties in Miami and Fort Lauderdale. Write with authority and include local insights.' 
+              content: 'You are an expert real estate and rental market writer with deep knowledge of South Florida markets, specifically Miami and Fort Lauderdale. Create detailed, SEO-optimized blog posts that provide genuine local value to readers looking for rental properties. Write with authority, include specific local insights, and always provide actionable advice. Use a professional but approachable tone.' 
             },
             { role: 'user', content: prompt }
           ],
@@ -209,7 +228,7 @@ Create content that establishes authority, provides genuine value, and encourage
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: `Generated ${generatedPosts.length} blog posts successfully with DeepSeek`,
+        message: `Generated ${generatedPosts.length} South Florida focused blog posts successfully with DeepSeek`,
         posts: generatedPosts.map(post => ({ 
           id: post.id, 
           title: post.title,
