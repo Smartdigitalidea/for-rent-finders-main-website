@@ -1,7 +1,9 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Bed, Bath, Square, Star, Clock, Phone, Heart } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, Star, Clock, Phone, Heart, ImageIcon } from 'lucide-react';
+import PropertyGallery from './PropertyGallery';
 
 interface Deal {
   id: number;
@@ -14,6 +16,7 @@ interface Deal {
   baths: number;
   sqft: number;
   image: string;
+  galleryImages: string[];
   features: string[];
   expiresIn: string;
   rating: number;
@@ -23,6 +26,8 @@ interface Deal {
 
 const LatestDealsSection = () => {
   const [likedDeals, setLikedDeals] = useState<Set<number>>(new Set());
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState<Deal | null>(null);
 
   const deals: Deal[] = [
     {
@@ -36,6 +41,14 @@ const LatestDealsSection = () => {
       baths: 2,
       sqft: 1200,
       image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+      galleryImages: [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=600&fit=crop"
+      ],
       features: ["Ocean View", "Pool", "Gym", "Concierge"],
       expiresIn: "3 days",
       rating: 4.9,
@@ -53,6 +66,12 @@ const LatestDealsSection = () => {
       baths: 1,
       sqft: 600,
       image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+      galleryImages: [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=600&fit=crop"
+      ],
       features: ["Rooftop Deck", "Co-working", "Pet Friendly"],
       expiresIn: "5 days",
       rating: 4.7,
@@ -70,6 +89,12 @@ const LatestDealsSection = () => {
       baths: 1,
       sqft: 850,
       image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+      galleryImages: [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop"
+      ],
       features: ["Beach Access", "Resort Pool", "Spa"],
       expiresIn: "7 days",
       rating: 4.8,
@@ -87,6 +112,13 @@ const LatestDealsSection = () => {
       baths: 2,
       sqft: 1800,
       image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+      galleryImages: [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop"
+      ],
       features: ["City Views", "Private Balcony", "Wine Cellar"],
       expiresIn: "2 days",
       rating: 4.9,
@@ -105,6 +137,15 @@ const LatestDealsSection = () => {
       }
       return newSet;
     });
+  };
+
+  const openGallery = (deal: Deal) => {
+    setSelectedProperty(deal);
+    setGalleryOpen(true);
+  };
+
+  const handleCall = () => {
+    window.open('tel:855-367-7368', '_self');
   };
 
   return (
@@ -170,13 +211,21 @@ const LatestDealsSection = () => {
                 </Badge>
               </div>
 
-              {/* Image */}
+              {/* Image with Gallery Indicator */}
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img
                   src={deal.image}
                   alt={deal.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                
+                {/* Gallery indicator */}
+                <div className="absolute bottom-4 right-4">
+                  <Badge variant="secondary" className="bg-card/90 backdrop-blur-sm">
+                    <ImageIcon className="w-3 h-3 mr-1" />
+                    {deal.galleryImages.length} Photos
+                  </Badge>
+                </div>
                 
                 {/* Expires Overlay */}
                 <div className="absolute bottom-4 left-4">
@@ -250,13 +299,14 @@ const LatestDealsSection = () => {
                 {/* Actions */}
                 <div className="flex gap-3">
                   <Button 
-                    onClick={() => window.open(`tel:855-367-7368`, '_self')}
+                    onClick={() => openGallery(deal)}
                     className="flex-1 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground font-semibold shadow-elegant hover:shadow-luxury transition-all duration-500"
                   >
+                    <ImageIcon className="w-4 h-4 mr-2" />
                     View Details
                   </Button>
                   <Button 
-                    onClick={() => window.open(`tel:855-367-7368`, '_self')}
+                    onClick={handleCall}
                     variant="outline" 
                     size="icon" 
                     className="bg-card hover:bg-primary/10 border-border/50 hover:border-primary/30 transition-all duration-300"
@@ -283,7 +333,7 @@ const LatestDealsSection = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                onClick={() => window.open(`tel:855-367-7368`, '_self')}
+                onClick={handleCall}
                 size="lg" 
                 className="bg-gradient-to-r from-orange to-orange-glow hover:from-orange-glow hover:to-orange text-orange-foreground px-8 py-4 text-lg font-semibold shadow-orange hover:shadow-luxury transition-all duration-500 transform hover:scale-105"
               >
@@ -302,6 +352,16 @@ const LatestDealsSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Property Gallery Modal */}
+      {selectedProperty && (
+        <PropertyGallery
+          isOpen={galleryOpen}
+          onClose={() => setGalleryOpen(false)}
+          propertyTitle={selectedProperty.title}
+          images={selectedProperty.galleryImages}
+        />
+      )}
     </section>
   );
 };
