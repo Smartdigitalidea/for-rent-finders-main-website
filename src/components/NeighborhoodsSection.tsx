@@ -1,103 +1,204 @@
 
-import { MapPin, Building, Waves, TreePine, Car } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { MapPin, Star, ArrowRight, DollarSign, Home, Users } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const NeighborhoodsSection = () => {
-  const cities = [
-    {
-      name: "Fort Lauderdale",
-      description: "From downtown vibes to beachside escapes, we've got you covered.",
-      image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80",
-      neighborhoods: [
-        { name: "Downtown", icon: Building, desc: "Urban living with restaurants & nightlife" },
-        { name: "Las Olas", icon: Waves, desc: "Beachfront luxury and entertainment" },
-        { name: "Victoria Park", icon: TreePine, desc: "Historic charm with tree-lined streets" },
-        { name: "Flagler Village", icon: Car, desc: "Arts district with modern amenities" }
-      ],
-      highlights: ["Beach access", "Boating lifestyle", "Art galleries", "Fine dining"]
-    },
+  // Fort Lauderdale rotating images
+  const fortLauderdaleImages = [
+    'https://images.unsplash.com/photo-1530686577637-0ccce382b327?q=80&w=1834&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1484199383121-dfa3c30608cd?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1476984251899-8d7fdfc5c92c?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1598077990988-67debdcfa318?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1585433341185-9e60b28ed0a7?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  ];
+
+  // Miami sliding images
+  const miamiImages = [
+    'https://plus.unsplash.com/premium_photo-1697730215093-baeae8060bfe?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1501509497947-782640bc1412?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?q=80&w=1728&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  ];
+
+  const [fortLauderdaleImageIndex, setFortLauderdaleImageIndex] = useState(0);
+  const [miamiImageIndex, setMiamiImageIndex] = useState(0);
+
+  // Rotate Fort Lauderdale images every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFortLauderdaleImageIndex((prev) => (prev + 1) % fortLauderdaleImages.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [fortLauderdaleImages.length]);
+
+  // Slide Miami images every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMiamiImageIndex((prev) => (prev + 1) % miamiImages.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [miamiImages.length]);
+
+  const neighborhoods = [
     {
       name: "Miami",
-      description: "Vibrant nightlife, luxury high-rises, or family-friendly suburbs — we'll help you find it.",
-      image: "https://images.unsplash.com/photo-1460574283810-2aab119d8511?auto=format&fit=crop&w=800&q=80",
-      neighborhoods: [
-        { name: "Brickell", icon: Building, desc: "Financial district with luxury towers" },
-        { name: "South Beach", icon: Waves, desc: "Iconic beach and Art Deco architecture" },
-        { name: "Wynwood", icon: TreePine, desc: "Arts district with murals and galleries" },
-        { name: "Coral Gables", icon: Car, desc: "Mediterranean-style family community" }
-      ],
-      highlights: ["World-class dining", "International culture", "Business hub", "Beach lifestyle"]
+      subtitle: "The Magic City",
+      description: "Experience world-class beaches, vibrant nightlife, and luxury high-rise living in America's most international city.",
+      images: miamiImages,
+      currentImageIndex: miamiImageIndex,
+      isSliding: true,
+      stats: {
+        avgRent: "$2,800",
+        properties: "1,200+",
+        rating: "4.8"
+      },
+      highlights: [
+        "South Beach luxury condos",
+        "Brickell financial district",
+        "Wynwood arts scene",
+        "World-class dining"
+      ]
+    },
+    {
+      name: "Fort Lauderdale",
+      subtitle: "Venice of America", 
+      description: "Discover beautiful canals, yacht-friendly marinas, and a more relaxed pace while staying close to Miami's excitement.",
+      images: fortLauderdaleImages,
+      currentImageIndex: fortLauderdaleImageIndex,
+      isSliding: false,
+      stats: {
+        avgRent: "$2,200",
+        properties: "800+",
+        rating: "4.7"
+      },
+      highlights: [
+        "Las Olas Boulevard",
+        "Luxury waterfront living",
+        "Boating community",
+        "Family-friendly beaches"
+      ]
     }
   ];
 
   return (
-    <section id="neighborhoods" className="py-20 bg-gray-50">
+    <section id="neighborhoods" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-              <span className="text-[#3384B3]">Neighborhoods</span> We Serve
+              Explore Prime <span className="text-[#3384B3]">Neighborhoods</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From vibrant city centers to peaceful suburban communities, we know every corner 
-              of South Florida and can help you find the perfect neighborhood for your lifestyle.
+              Discover the best areas to call home in South Florida, from Miami's cosmopolitan energy 
+              to Fort Lauderdale's coastal charm.
             </p>
             <div className="w-24 h-1 bg-[#3384B3] mx-auto rounded-full mt-6"></div>
           </div>
 
-          {/* Cities */}
-          <div className="space-y-16">
-            {cities.map((city, cityIndex) => (
-              <div key={city.name} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${cityIndex % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                {/* Image */}
-                <div className={`relative ${cityIndex % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <img 
-                    src={city.image}
-                    alt={`${city.name} skyline`}
-                    className="rounded-2xl shadow-2xl w-full h-80 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-2xl"></div>
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <h3 className="text-3xl font-bold mb-2">{city.name}</h3>
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="w-5 h-5" />
-                      <span>South Florida</span>
+          {/* Neighborhoods grid */}
+          <div className="grid lg:grid-cols-2 gap-12">
+            {neighborhoods.map((neighborhood, index) => (
+              <div key={neighborhood.name} className="group">
+                <div className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+                  {/* Image container */}
+                  <div className="relative h-64 md:h-80 overflow-hidden">
+                    {neighborhood.isSliding ? (
+                      // Miami sliding images
+                      <div className="relative w-full h-full">
+                        {neighborhood.images.map((image, imgIndex) => (
+                          <img
+                            key={imgIndex}
+                            src={image}
+                            alt={`${neighborhood.name} ${imgIndex + 1}`}
+                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-in-out ${
+                              imgIndex === neighborhood.currentImageIndex
+                                ? 'translate-x-0'
+                                : imgIndex < neighborhood.currentImageIndex
+                                ? '-translate-x-full'
+                                : 'translate-x-full'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      // Fort Lauderdale rotating images
+                      <img
+                        src={neighborhood.images[neighborhood.currentImageIndex]}
+                        alt={neighborhood.name}
+                        className="w-full h-full object-cover transition-opacity duration-500"
+                      />
+                    )}
+                    
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                    
+                    {/* Location badge */}
+                    <div className="absolute top-6 left-6">
+                      <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center space-x-2">
+                        <MapPin className="w-4 h-4 text-[#3384B3]" />
+                        <span className="text-sm font-semibold text-gray-800">{neighborhood.name}</span>
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                {/* Content */}
-                <div className={cityIndex % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">{city.name}</h3>
-                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">{city.description}</p>
+                    {/* Rating badge */}
+                    <div className="absolute top-6 right-6">
+                      <div className="bg-[#3384B3] text-white px-3 py-2 rounded-full flex items-center space-x-1">
+                        <Star className="w-4 h-4 fill-current" />
+                        <span className="text-sm font-semibold">{neighborhood.stats.rating}</span>
+                      </div>
+                    </div>
 
-                  {/* Neighborhoods grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    {city.neighborhoods.map((neighborhood) => (
-                      <div key={neighborhood.name} className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-8 h-8 bg-[#3384B3] bg-opacity-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                            <neighborhood.icon className="w-4 h-4 text-[#3384B3]" />
+                    {/* Stats overlay */}
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <div className="flex justify-between items-center">
+                        <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-full">
+                          <div className="flex items-center space-x-2">
+                            <DollarSign className="w-4 h-4 text-green-600" />
+                            <span className="text-sm font-bold text-gray-800">{neighborhood.stats.avgRent}/mo</span>
                           </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-800">{neighborhood.name}</h4>
-                            <p className="text-sm text-gray-600 mt-1">{neighborhood.desc}</p>
+                        </div>
+                        <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-full">
+                          <div className="flex items-center space-x-2">
+                            <Home className="w-4 h-4 text-[#3384B3]" />
+                            <span className="text-sm font-bold text-gray-800">{neighborhood.stats.properties}</span>
                           </div>
                         </div>
                       </div>
-                    ))}
+                    </div>
                   </div>
 
-                  {/* Highlights */}
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-3">What makes {city.name} special:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {city.highlights.map((highlight) => (
-                        <span key={highlight} className="bg-[#A2CDDD] bg-opacity-30 text-[#3384B3] px-3 py-1 rounded-full text-sm font-medium">
-                          {highlight}
-                        </span>
-                      ))}
+                  {/* Content */}
+                  <div className="p-8">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-gray-800 mb-2">{neighborhood.name}</h3>
+                      <p className="text-[#3384B3] font-semibold mb-4">{neighborhood.subtitle}</p>
+                      <p className="text-gray-600 leading-relaxed">{neighborhood.description}</p>
                     </div>
+
+                    {/* Highlights */}
+                    <div className="mb-6">
+                      <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
+                        <Users className="w-4 h-4 mr-2 text-[#3384B3]" />
+                        Key Highlights
+                      </h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        {neighborhood.highlights.map((highlight, highlightIndex) => (
+                          <div key={highlightIndex} className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-[#3384B3] rounded-full"></div>
+                            <span className="text-sm text-gray-600">{highlight}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <Button className="w-full bg-gradient-to-r from-[#3384B3] to-[#2563EB] hover:from-[#2563EB] hover:to-[#3384B3] text-white font-semibold py-3 rounded-2xl transition-all duration-300 group-hover:shadow-lg">
+                      <span>Explore {neighborhood.name}</span>
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -105,24 +206,17 @@ const NeighborhoodsSection = () => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-16 text-center">
-            <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-[#A2CDDD] border-opacity-30">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Need Help Choosing a Neighborhood?
-              </h3>
-              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-                Our local experts can help you understand commute times, school districts, amenities, 
-                and the unique character of each area to find your perfect match.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-[#3384B3] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#2a6b91] transition-colors duration-200">
-                  Schedule a Consultation
-                </button>
-                <button className="border-2 border-[#3384B3] text-[#3384B3] px-6 py-3 rounded-xl font-semibold hover:bg-[#3384B3] hover:text-white transition-colors duration-200">
-                  Browse All Areas
-                </button>
-              </div>
-            </div>
+          <div className="text-center mt-16">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              Can't decide? Let us help you choose!
+            </h3>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+              Our local experts know every neighborhood inside and out. We'll match you with the perfect area based on your lifestyle, budget, and preferences.
+            </p>
+            <Button className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-2xl shadow-elegant hover:shadow-luxury transition-all duration-500 transform hover:scale-105">
+              <MapPin className="w-5 h-5 mr-2" />
+              Get Neighborhood Recommendations
+            </Button>
           </div>
         </div>
       </div>
