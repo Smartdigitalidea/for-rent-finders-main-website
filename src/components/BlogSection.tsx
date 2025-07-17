@@ -4,44 +4,21 @@ import { Calendar, Clock, ArrowRight, User, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  image_url: string;
+  category: string;
+  read_time: string;
+  published_at: string;
+  featured: boolean;
+  author: string;
+}
+
 const BlogSection = () => {
-  const [blogPosts, setBlogPosts] = useState([{
-    id: '1',
-    title: "The Best Neighborhoods in Miami for Renters in 2025",
-    excerpt: "Discover the top areas to rent in Miami this year, from affordable gems to luxury hotspots, complete with insider tips on what to expect...",
-    image: "/src/assets/blog-miami-neighborhoods.jpg",
-    category: "Neighborhoods",
-    readTime: "5 min read",
-    publishDate: "Jan 15, 2025",
-    trending: true
-  }, {
-    id: '2',
-    title: "How to Budget for Your First Apartment",
-    excerpt: "Complete guide to apartment budgeting including hidden costs, security deposits, utilities, and smart money-saving tips for new renters...",
-    image: "/src/assets/blog-apartment-budget.jpg",
-    category: "Finance",
-    readTime: "7 min read",
-    publishDate: "Jan 12, 2025",
-    trending: false
-  }, {
-    id: '3',
-    title: "Studio vs 1-Bedroom: What's Best for You?",
-    excerpt: "Weighing the pros and cons of studio apartments versus one-bedrooms in South Florida, including cost analysis and lifestyle considerations...",
-    image: "/src/assets/blog-studio-vs-1bedroom.jpg",
-    category: "Apartment Types",
-    readTime: "4 min read",
-    publishDate: "Jan 10, 2025",
-    trending: false
-  }, {
-    id: '4',
-    title: "How Credit Score Affects Apartment Approval",
-    excerpt: "Everything you need to know about credit requirements for renting, how to improve your score, and alternative options for those with poor credit...",
-    image: "/src/assets/blog-credit-score.jpg",
-    category: "Credit",
-    readTime: "6 min read",
-    publishDate: "Jan 8, 2025",
-    trending: true
-  }]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -49,25 +26,13 @@ const BlogSection = () => {
         const { supabase } = await import('@/integrations/supabase/client');
         const { data, error } = await supabase
           .from('blog_posts')
-          .select('*')
+          .select('id, title, excerpt, image_url, category, read_time, published_at, featured, author')
           .eq('status', 'published')
           .order('published_at', { ascending: false })
           .limit(4);
 
         if (error) throw error;
-
-        const formattedPosts = data.map(post => ({
-          id: post.id,
-          title: post.title,
-          excerpt: post.excerpt,
-          image: post.image_url,
-          category: post.category,
-          readTime: post.read_time,
-          publishDate: new Date(post.published_at).toLocaleDateString(),
-          trending: post.featured
-        }));
-
-        setBlogPosts(formattedPosts);
+        setBlogPosts(data || []);
 
         // Set up real-time subscription
         const channel = supabase
@@ -88,12 +53,40 @@ const BlogSection = () => {
         };
       } catch (error) {
         console.error('Error fetching blog posts:', error);
-        // Keep default posts if fetch fails
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPosts();
   }, []);
+
+  if (loading) {
+    return (
+      <section id="blog" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Latest <span className="text-[#3384B3]">Blog Posts</span>
+              </h2>
+              <div className="w-24 h-1 bg-[#3384B3] mx-auto rounded-full mt-6"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-gray-200 rounded-2xl h-48 mb-4"></div>
+                  <div className="bg-gray-200 rounded h-6 mb-2"></div>
+                  <div className="bg-gray-200 rounded h-4 mb-2"></div>
+                  <div className="bg-gray-200 rounded h-4 w-2/3"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="blog" className="py-20 bg-white">
@@ -119,7 +112,7 @@ const BlogSection = () => {
                 <article className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden group cursor-pointer">
                   <div className="relative">
                     <img 
-                      src={post.image} 
+                      src={post.image_url} 
                       alt={post.title} 
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                       onError={(e) => {
@@ -133,10 +126,10 @@ const BlogSection = () => {
                       <span className="bg-[#3384B3] text-white px-3 py-1 rounded-full text-xs font-medium">
                         {post.category}
                       </span>
-                      {post.trending && (
+                      {post.featured && (
                         <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3" />
-                          <span>Trending</span>
+                          <span>Featured</span>
                         </span>
                       )}
                     </div>
@@ -144,7 +137,7 @@ const BlogSection = () => {
                     {/* Read time */}
                     <div className="absolute bottom-4 right-4 bg-white bg-opacity-90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-gray-700 flex items-center space-x-1">
                       <Clock className="w-3 h-3" />
-                      <span>{post.readTime}</span>
+                      <span>{post.read_time}</span>
                     </div>
                   </div>
 
@@ -153,11 +146,11 @@ const BlogSection = () => {
                     <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
                       <div className="flex items-center space-x-1">
                         <User className="w-4 h-4" />
-                        <span>For Rent Finders</span>
+                        <span>{post.author}</span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-4 h-4" />
-                        <span>{post.publishDate}</span>
+                        <span>{new Date(post.published_at).toLocaleDateString()}</span>
                       </div>
                     </div>
 
