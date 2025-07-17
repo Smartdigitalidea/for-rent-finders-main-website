@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
@@ -6,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogSidebar from '@/components/BlogSidebar';
-
 interface BlogPost {
   id: string;
   title: string;
@@ -23,48 +21,45 @@ interface BlogPost {
   keywords?: string[];
   slug?: string;
 }
-
 const BlogPost = () => {
-  const { id } = useParams();
+  const {
+    id
+  } = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const { supabase } = await import('@/integrations/supabase/client');
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .select('*')
-          .eq('id', id)
-          .eq('status', 'published')
-          .single();
-
+        const {
+          supabase
+        } = await import('@/integrations/supabase/client');
+        const {
+          data,
+          error
+        } = await supabase.from('blog_posts').select('*').eq('id', id).eq('status', 'published').single();
         if (error) throw error;
         setPost(data);
-        
+
         // Update SEO meta tags
         if (data) {
           document.title = data.meta_title || data.title;
-          
+
           // Update meta description
           const metaDescription = document.querySelector('meta[name="description"]');
           if (metaDescription) {
             metaDescription.setAttribute('content', data.meta_description || data.excerpt);
           }
-          
+
           // Update Open Graph tags
           const ogTitle = document.querySelector('meta[property="og:title"]');
           if (ogTitle) {
             ogTitle.setAttribute('content', data.meta_title || data.title);
           }
-          
           const ogDescription = document.querySelector('meta[property="og:description"]');
           if (ogDescription) {
             ogDescription.setAttribute('content', data.meta_description || data.excerpt);
           }
-          
           const ogImage = document.querySelector('meta[property="og:image"]');
           if (ogImage) {
             ogImage.setAttribute('content', data.image_url);
@@ -77,19 +72,15 @@ const BlogPost = () => {
         setLoading(false);
       }
     };
-
     if (id) {
       fetchPost();
     }
   }, [id]);
-
   const handleShare = (platform?: string) => {
     if (!post) return;
-
     const url = window.location.href;
     const title = post.title;
     const text = post.excerpt;
-
     switch (platform) {
       case 'facebook':
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
@@ -102,27 +93,26 @@ const BlogPost = () => {
         break;
       default:
         if (navigator.share) {
-          navigator.share({ title, text, url });
+          navigator.share({
+            title,
+            text,
+            url
+          });
         } else {
           navigator.clipboard.writeText(url);
         }
     }
   };
-
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-secondary/20 to-accent">
+    return <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-secondary/20 to-accent">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-muted-foreground">Loading article...</p>
         </div>
-      </div>
-    );
+      </div>;
   }
-
   if (error || !post) {
-    return (
-      <div className="min-h-screen">
+    return <div className="min-h-screen">
         <Header />
         <div className="container mx-auto px-4 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Article Not Found</h1>
@@ -135,12 +125,9 @@ const BlogPost = () => {
           </Link>
         </div>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       
       {/* Breadcrumb Navigation */}
@@ -159,7 +146,7 @@ const BlogPost = () => {
       {/* Main Content */}
       <section className="py-8">
         <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto my-[70px]">
             {/* Back to Blog Link */}
             <Link to="/blog" className="inline-flex items-center text-primary hover:text-primary-deep transition-colors mb-6">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -179,20 +166,18 @@ const BlogPost = () => {
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {new Date(post.published_at).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       {post.read_time}
                     </span>
-                    {post.featured && (
-                      <span className="bg-gold/20 text-gold px-2 py-1 rounded-full text-xs font-medium">
+                    {post.featured && <span className="bg-gold/20 text-gold px-2 py-1 rounded-full text-xs font-medium">
                         Featured
-                      </span>
-                    )}
+                      </span>}
                   </div>
                   
                   <div>
@@ -210,39 +195,19 @@ const BlogPost = () => {
                   {/* Social Sharing */}
                   <div className="flex items-center gap-2 pt-4 border-t border-border">
                     <span className="text-sm font-medium text-muted-foreground mr-2">Share:</span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleShare('facebook')}
-                      className="gap-2"
-                    >
+                    <Button variant="outline" size="sm" onClick={() => handleShare('facebook')} className="gap-2">
                       <Facebook className="w-4 h-4" />
                       Facebook
                     </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleShare('twitter')}
-                      className="gap-2"
-                    >
+                    <Button variant="outline" size="sm" onClick={() => handleShare('twitter')} className="gap-2">
                       <Twitter className="w-4 h-4" />
                       Twitter
                     </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleShare('linkedin')}
-                      className="gap-2"
-                    >
+                    <Button variant="outline" size="sm" onClick={() => handleShare('linkedin')} className="gap-2">
                       <Linkedin className="w-4 h-4" />
                       LinkedIn
                     </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleShare()}
-                      className="gap-2"
-                    >
+                    <Button variant="outline" size="sm" onClick={() => handleShare()} className="gap-2">
                       <Share2 className="w-4 h-4" />
                       Copy Link
                     </Button>
@@ -251,35 +216,16 @@ const BlogPost = () => {
                 
                 {/* Featured Image */}
                 <div className="aspect-video overflow-hidden rounded-2xl shadow-lg">
-                  <img 
-                    src={post.image_url} 
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/placeholder.svg';
-                    }}
-                  />
+                  <img src={post.image_url} alt={post.title} className="w-full h-full object-cover" onError={e => {
+                  (e.target as HTMLImageElement).src = '/placeholder.svg';
+                }} />
                 </div>
                 
                 {/* Article Content */}
                 <div className="prose prose-lg max-w-none">
-                  <div 
-                    className="text-muted-foreground leading-relaxed space-y-6"
-                    dangerouslySetInnerHTML={{ 
-                      __html: post.content
-                        .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-foreground mt-8 mb-4">')
-                        .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-foreground mt-6 mb-3">')
-                        .replace(/<p>/g, '<p class="mb-4 leading-relaxed">')
-                        .replace(/<ul>/g, '<ul class="list-disc pl-6 mb-4 space-y-2">')
-                        .replace(/<ol>/g, '<ol class="list-decimal pl-6 mb-4 space-y-2">')
-                        .replace(/<li>/g, '<li class="mb-1">')
-                        .replace(/<strong>/g, '<strong class="font-semibold text-foreground">')
-                        .replace(/<a /g, '<a class="text-primary hover:text-primary-deep underline" ')
-                        .replace(/<table>/g, '<table class="w-full border-collapse border border-border mt-6 mb-6">')
-                        .replace(/<th>/g, '<th class="border border-border bg-muted p-3 text-left font-semibold">')
-                        .replace(/<td>/g, '<td class="border border-border p-3">')
-                    }}
-                  />
+                  <div className="text-muted-foreground leading-relaxed space-y-6" dangerouslySetInnerHTML={{
+                  __html: post.content.replace(/<h2>/g, '<h2 class="text-2xl font-bold text-foreground mt-8 mb-4">').replace(/<h3>/g, '<h3 class="text-xl font-semibold text-foreground mt-6 mb-3">').replace(/<p>/g, '<p class="mb-4 leading-relaxed">').replace(/<ul>/g, '<ul class="list-disc pl-6 mb-4 space-y-2">').replace(/<ol>/g, '<ol class="list-decimal pl-6 mb-4 space-y-2">').replace(/<li>/g, '<li class="mb-1">').replace(/<strong>/g, '<strong class="font-semibold text-foreground">').replace(/<a /g, '<a class="text-primary hover:text-primary-deep underline" ').replace(/<table>/g, '<table class="w-full border-collapse border border-border mt-6 mb-6">').replace(/<th>/g, '<th class="border border-border bg-muted p-3 text-left font-semibold">').replace(/<td>/g, '<td class="border border-border p-3">')
+                }} />
                 </div>
                 
                 {/* Call to Action */}
@@ -292,19 +238,11 @@ const BlogPost = () => {
                     We know the market inside and out and can help you navigate the competitive South Florida rental scene.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button 
-                      onClick={() => window.open('tel:855-367-7368', '_self')}
-                      size="lg"
-                      className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-8 py-4 text-lg font-semibold"
-                    >
+                    <Button onClick={() => window.open('tel:855-367-7368', '_self')} size="lg" className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-8 py-4 text-lg font-semibold">
                       Call 855-FOR-RENT
                     </Button>
                     <Link to="/contact">
-                      <Button 
-                        variant="outline"
-                        size="lg"
-                        className="px-8 py-4 text-lg font-semibold"
-                      >
+                      <Button variant="outline" size="lg" className="px-8 py-4 text-lg font-semibold">
                         Contact Us Online
                       </Button>
                     </Link>
@@ -312,21 +250,14 @@ const BlogPost = () => {
                 </div>
 
                 {/* Keywords for SEO */}
-                {post.keywords && post.keywords.length > 0 && (
-                  <div className="border-t border-border pt-6">
+                {post.keywords && post.keywords.length > 0 && <div className="border-t border-border pt-6">
                     <h4 className="text-sm font-semibold text-muted-foreground mb-2">Topics:</h4>
                     <div className="flex flex-wrap gap-2">
-                      {post.keywords.map((keyword, index) => (
-                        <span
-                          key={index}
-                          className="inline-block bg-muted text-muted-foreground px-3 py-1 rounded-full text-xs"
-                        >
+                      {post.keywords.map((keyword, index) => <span key={index} className="inline-block bg-muted text-muted-foreground px-3 py-1 rounded-full text-xs">
                           {keyword}
-                        </span>
-                      ))}
+                        </span>)}
                     </div>
-                  </div>
-                )}
+                  </div>}
               </article>
 
               {/* Sidebar - 30% width */}
@@ -341,8 +272,6 @@ const BlogPost = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default BlogPost;
