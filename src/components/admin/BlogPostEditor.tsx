@@ -29,6 +29,10 @@ interface BlogPost {
   slug?: string;
   tags?: string[];
   read_time: string;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
+  scheduled_at?: string;
 }
 
 interface BlogPostEditorProps {
