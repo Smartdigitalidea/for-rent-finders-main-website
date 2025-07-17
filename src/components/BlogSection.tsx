@@ -1,9 +1,7 @@
-
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight, User, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
-
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState([{
     id: '1',
@@ -42,20 +40,20 @@ const BlogSection = () => {
     publishDate: "Jan 8, 2025",
     trending: true
   }]);
-
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { supabase } = await import('@/integrations/supabase/client');
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .select('*')
-          .order('published_at', { ascending: false })
-          .limit(4);
-        
+        const {
+          supabase
+        } = await import('@/integrations/supabase/client');
+        const {
+          data,
+          error
+        } = await supabase.from('blog_posts').select('*').order('published_at', {
+          ascending: false
+        }).limit(4);
         if (error) throw error;
-        
-        const formattedPosts = data.map((post) => ({
+        const formattedPosts = data.map(post => ({
           id: post.id,
           title: post.title,
           excerpt: post.excerpt,
@@ -65,19 +63,15 @@ const BlogSection = () => {
           publishDate: new Date(post.published_at).toLocaleDateString(),
           trending: post.featured
         }));
-        
         setBlogPosts(formattedPosts);
       } catch (error) {
         console.error('Error fetching blog posts:', error);
         // Keep default posts if fetch fails
       }
     };
-
     fetchPosts();
   }, []);
-
-  return (
-    <section id="blog" className="py-20 bg-white">
+  return <section id="blog" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
@@ -89,17 +83,13 @@ const BlogSection = () => {
               Stay informed with expert insights, market updates, and helpful tips for renters 
               in South Florida. Updated every Monday & Friday.
             </p>
-            <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
-              <Calendar className="w-4 h-4" />
-              <span>Updated Automatically Every Monday & Friday</span>
-            </div>
+            
             <div className="w-24 h-1 bg-[#3384B3] mx-auto rounded-full mt-6"></div>
           </div>
 
           {/* Blog posts grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {blogPosts.map(post => (
-              <Link key={post.id} to={`/blog/${post.id}`}>
+            {blogPosts.map(post => <Link key={post.id} to={`/blog/${post.id}`}>
                 <article className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden group cursor-pointer">
                   <div className="relative">
                     <img src={post.image} alt={post.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300" />
@@ -110,12 +100,10 @@ const BlogSection = () => {
                       <span className="bg-[#3384B3] text-white px-3 py-1 rounded-full text-xs font-medium">
                         {post.category}
                       </span>
-                      {post.trending && (
-                        <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
+                      {post.trending && <span className="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
                           <TrendingUp className="w-3 h-3" />
                           <span>Trending</span>
-                        </span>
-                      )}
+                        </span>}
                     </div>
 
                     {/* Read time */}
@@ -155,8 +143,7 @@ const BlogSection = () => {
                     </div>
                   </div>
                 </article>
-              </Link>
-            ))}
+              </Link>)}
           </div>
 
           {/* View all posts CTA */}
@@ -170,8 +157,6 @@ const BlogSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default BlogSection;
