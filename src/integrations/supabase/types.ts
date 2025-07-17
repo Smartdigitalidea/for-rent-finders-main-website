@@ -14,6 +14,44 @@ export type Database = {
   }
   public: {
     Tables: {
+      automated_blog_logs: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          id: string
+          post_id: string | null
+          schedule_type: string
+          status: string
+          topic: string | null
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          post_id?: string | null
+          schedule_type: string
+          status?: string
+          topic?: string | null
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          post_id?: string | null
+          schedule_type?: string
+          status?: string
+          topic?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automated_blog_logs_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_posts: {
         Row: {
           author: string
