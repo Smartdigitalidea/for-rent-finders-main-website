@@ -56,7 +56,7 @@ const HeroSection = () => {
           </div>
 
           {/* Main headline - Better responsive sizing */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 sm:mb-8 leading-tight fade-in-up luxury-text-glow">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 sm:mb-8 leading-tight fade-in-up luxury-text-glow md:text-6xl">
             Find Your 
             <span className="bg-gradient-to-r from-primary via-primary-glow to-gold bg-clip-text text-transparent"> Dream Apartment</span>
             <br />
