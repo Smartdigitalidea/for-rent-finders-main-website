@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
               <img 
-                src="/lovable-uploads/0dde1237-ad75-4dbf-b3d5-b708ed17ff71.png" 
+                src="/lovable-uploads/73220194-ea00-4b76-b4cd-0cd100ac9f5b.png" 
                 alt="For Rent Finders Logo" 
                 className="h-10 w-auto filter brightness-0 invert"
               />
@@ -27,9 +27,14 @@ const Footer = () => {
               We make apartment hunting stress-free and completely free for renters.
             </p>
             <div className="flex space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200">
+              <a 
+                href="https://www.instagram.com/for_rent_finders/?locale=fr&hl=af"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200"
+              >
                 <Instagram className="w-5 h-5" />
-              </div>
+              </a>
               <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200">
                 <Facebook className="w-5 h-5" />
               </div>

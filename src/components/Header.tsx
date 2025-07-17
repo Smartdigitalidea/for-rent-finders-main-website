@@ -48,13 +48,26 @@ const Header = () => {
             />
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          {/* Desktop Navigation - Reduced font size for tablet */}
+          <nav className="hidden lg:flex space-x-8">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-gray-700 hover:text-orange-500 font-medium transition-colors"
+                className="text-gray-700 hover:text-orange-500 font-medium transition-colors text-sm xl:text-base"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Tablet Navigation - Compact version */}
+          <nav className="hidden md:flex lg:hidden space-x-4">
+            {menuItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-gray-700 hover:text-orange-500 font-medium transition-colors text-xs px-2"
               >
                 {item.name}
               </Link>
@@ -62,7 +75,7 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <Button className="hidden md:block bg-gradient-to-r from-primary to-orange-500 hover:from-primary-deep hover:to-orange-deep text-white">
+          <Button className="hidden md:block bg-gradient-to-r from-primary to-orange-500 hover:from-primary-deep hover:to-orange-deep text-white text-sm lg:text-base">
             Get Started Free
           </Button>
 

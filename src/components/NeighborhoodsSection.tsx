@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { MapPin, Star, ArrowRight, DollarSign, Home, Users } from 'lucide-react';
+import { MapPin, Star, ArrowRight, DollarSign, Home, Users, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const NeighborhoodsSection = () => {
@@ -83,28 +83,35 @@ const NeighborhoodsSection = () => {
   ];
 
   return (
-    <section id="neighborhoods" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+    <section id="neighborhoods" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-              Explore Prime <span className="text-[#3384B3]">Neighborhoods</span>
+        <div className="max-w-7xl mx-auto">
+          {/* Section header with modern design */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg mb-6">
+              <MapPin className="w-5 h-5 text-[#3384B3] mr-2" />
+              <span className="text-[#3384B3] font-semibold">Prime Locations</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-8 leading-tight">
+              Explore Prime <br />
+              <span className="bg-gradient-to-r from-[#3384B3] to-[#2563EB] bg-clip-text text-transparent">
+                Neighborhoods
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Discover the best areas to call home in South Florida, from Miami's cosmopolitan energy 
               to Fort Lauderdale's coastal charm.
             </p>
-            <div className="w-24 h-1 bg-[#3384B3] mx-auto rounded-full mt-6"></div>
           </div>
 
-          {/* Neighborhoods grid */}
-          <div className="grid lg:grid-cols-2 gap-12">
+          {/* Enhanced neighborhoods showcase */}
+          <div className="space-y-16">
             {neighborhoods.map((neighborhood, index) => (
-              <div key={neighborhood.name} className="group">
-                <div className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
-                  {/* Image container */}
-                  <div className="relative h-64 md:h-80 overflow-hidden">
+              <div key={neighborhood.name} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-16`}>
+                
+                {/* Image Section */}
+                <div className="w-full lg:w-1/2 relative group">
+                  <div className="relative h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                     {neighborhood.isSliding ? (
                       // Miami sliding images
                       <div className="relative w-full h-full">
@@ -132,72 +139,83 @@ const NeighborhoodsSection = () => {
                       />
                     )}
                     
-                    {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                    {/* Enhanced overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     
-                    {/* Location badge */}
-                    <div className="absolute top-6 left-6">
-                      <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center space-x-2">
-                        <MapPin className="w-4 h-4 text-[#3384B3]" />
-                        <span className="text-sm font-semibold text-gray-800">{neighborhood.name}</span>
-                      </div>
-                    </div>
-
-                    {/* Rating badge */}
-                    <div className="absolute top-6 right-6">
-                      <div className="bg-[#3384B3] text-white px-3 py-2 rounded-full flex items-center space-x-1">
-                        <Star className="w-4 h-4 fill-current" />
-                        <span className="text-sm font-semibold">{neighborhood.stats.rating}</span>
-                      </div>
-                    </div>
-
-                    {/* Stats overlay */}
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <div className="flex justify-between items-center">
-                        <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-full">
-                          <div className="flex items-center space-x-2">
-                            <DollarSign className="w-4 h-4 text-green-600" />
-                            <span className="text-sm font-bold text-gray-800">{neighborhood.stats.avgRent}/mo</span>
-                          </div>
+                    {/* Floating stats cards */}
+                    <div className="absolute top-6 left-6 right-6 flex justify-between">
+                      <div className="bg-white/95 backdrop-blur-sm px-4 py-3 rounded-2xl shadow-lg">
+                        <div className="flex items-center space-x-2">
+                          <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                          <span className="font-bold text-gray-800">{neighborhood.stats.rating}</span>
                         </div>
-                        <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-full">
-                          <div className="flex items-center space-x-2">
-                            <Home className="w-4 h-4 text-[#3384B3]" />
-                            <span className="text-sm font-bold text-gray-800">{neighborhood.stats.properties}</span>
+                      </div>
+                      <div className="bg-white/95 backdrop-blur-sm px-4 py-3 rounded-2xl shadow-lg">
+                        <div className="flex items-center space-x-2">
+                          <DollarSign className="w-5 h-5 text-green-600" />
+                          <span className="font-bold text-gray-800">{neighborhood.stats.avgRent}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <div className="bg-white/95 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h3 className="text-2xl font-bold text-gray-800">{neighborhood.name}</h3>
+                            <p className="text-[#3384B3] font-semibold">{neighborhood.subtitle}</p>
+                          </div>
+                          <div className="flex items-center space-x-2 text-gray-600">
+                            <Home className="w-5 h-5" />
+                            <span className="font-semibold">{neighborhood.stats.properties}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Content */}
-                  <div className="p-8">
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">{neighborhood.name}</h3>
-                      <p className="text-[#3384B3] font-semibold mb-4">{neighborhood.subtitle}</p>
-                      <p className="text-gray-600 leading-relaxed">{neighborhood.description}</p>
+                {/* Content Section */}
+                <div className="w-full lg:w-1/2 space-y-8">
+                  <div>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                      {neighborhood.name}
+                    </h3>
+                    <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
+                      {neighborhood.description}
+                    </p>
+                  </div>
+
+                  {/* Enhanced highlights */}
+                  <div className="bg-white rounded-2xl p-8 shadow-xl">
+                    <h4 className="font-bold text-gray-800 mb-6 flex items-center text-lg">
+                      <Users className="w-6 h-6 mr-3 text-[#3384B3]" />
+                      Key Highlights
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {neighborhood.highlights.map((highlight, highlightIndex) => (
+                        <div key={highlightIndex} className="flex items-center space-x-3 p-3 rounded-xl bg-gradient-to-r from-blue-50 to-cyan-50">
+                          <div className="w-3 h-3 bg-gradient-to-r from-[#3384B3] to-[#2563EB] rounded-full"></div>
+                          <span className="text-gray-700 font-medium">{highlight}</span>
+                        </div>
+                      ))}
                     </div>
+                  </div>
 
-                    {/* Highlights */}
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
-                        <Users className="w-4 h-4 mr-2 text-[#3384B3]" />
-                        Key Highlights
-                      </h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {neighborhood.highlights.map((highlight, highlightIndex) => (
-                          <div key={highlightIndex} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-[#3384B3] rounded-full"></div>
-                            <span className="text-sm text-gray-600">{highlight}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* CTA */}
-                    <Button className="w-full bg-gradient-to-r from-[#3384B3] to-[#2563EB] hover:from-[#2563EB] hover:to-[#3384B3] text-white font-semibold py-3 rounded-2xl transition-all duration-300 group-hover:shadow-lg">
+                  {/* Enhanced CTA */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button className="flex-1 bg-gradient-to-r from-[#3384B3] to-[#2563EB] hover:from-[#2563EB] hover:to-[#3384B3] text-white font-semibold py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                       <span>Explore {neighborhood.name}</span>
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                    
+                    <Button 
+                      variant="outline" 
+                      className="border-[#3384B3] text-[#3384B3] hover:bg-[#3384B3] hover:text-white py-4 rounded-2xl transition-all duration-300"
+                      onClick={() => window.open('https://www.instagram.com/for_rent_finders/?locale=fr&hl=af', '_blank')}
+                    >
+                      <Instagram className="w-5 h-5 mr-2" />
+                      View on Instagram
                     </Button>
                   </div>
                 </div>
@@ -205,18 +223,20 @@ const NeighborhoodsSection = () => {
             ))}
           </div>
 
-          {/* Bottom CTA */}
-          <div className="text-center mt-16">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Can't decide? Let us help you choose!
-            </h3>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-              Our local experts know every neighborhood inside and out. We'll match you with the perfect area based on your lifestyle, budget, and preferences.
-            </p>
-            <Button className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-2xl shadow-elegant hover:shadow-luxury transition-all duration-500 transform hover:scale-105">
-              <MapPin className="w-5 h-5 mr-2" />
-              Get Neighborhood Recommendations
-            </Button>
+          {/* Enhanced bottom CTA */}
+          <div className="text-center mt-20">
+            <div className="bg-white rounded-3xl shadow-2xl p-12 max-w-4xl mx-auto">
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                Can't decide? Let us help you choose!
+              </h3>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Our local experts know every neighborhood inside and out. We'll match you with the perfect area based on your lifestyle, budget, and preferences.
+              </p>
+              <Button className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-12 py-6 text-xl font-semibold rounded-2xl shadow-elegant hover:shadow-luxury transition-all duration-500 transform hover:scale-105">
+                <MapPin className="w-6 h-6 mr-3" />
+                Get Neighborhood Recommendations
+              </Button>
+            </div>
           </div>
         </div>
       </div>
