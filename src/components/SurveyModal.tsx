@@ -85,17 +85,17 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[90vh] overflow-hidden p-0 bg-white border-2 border-gray-200 shadow-2xl">
-        <div className="flex h-full">
-          {/* Left Column - Form with enhanced contrast */}
-          <div className="flex-1 p-8 bg-gradient-to-br from-gray-50 to-white border-r-2 border-gray-100">
-            <DialogHeader className="mb-8">
+      <DialogContent className="max-w-6xl max-h-[95vh] overflow-hidden p-0 bg-white border-2 border-gray-200 shadow-2xl w-[95vw] md:w-full">
+        <div className="flex flex-col lg:flex-row h-full max-h-[95vh]">
+          {/* Left Column - Form with enhanced contrast - Mobile responsive */}
+          <div className="flex-1 p-4 md:p-8 bg-gradient-to-br from-gray-50 to-white lg:border-r-2 border-gray-100 overflow-y-auto">
+            <DialogHeader className="mb-6 md:mb-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
+                  <DialogTitle className="text-xl md:text-3xl font-bold bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
                     Find Your Dream Apartment
                   </DialogTitle>
-                  <p className="text-gray-600 mt-2 font-medium">
+                  <p className="text-gray-600 mt-2 font-medium text-sm md:text-base">
                     Step {step} of 3 - Takes less than 2 minutes
                   </p>
                 </div>
@@ -118,16 +118,16 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
 
             {/* Step 1: Personal Information */}
             {step === 1 && (
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 mb-6 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <User className="w-6 h-6 text-white" />
+              <div className="space-y-4 md:space-y-6">
+                <div className="flex items-center gap-3 mb-4 md:mb-6 p-3 md:p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <User className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800">Let's get to know you</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-800">Let's get to know you</h3>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                     <Label htmlFor="firstName" className="text-gray-700 font-medium">First Name *</Label>
                     <Input
                       id="firstName"
@@ -137,7 +137,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                       className="mt-2 border-2 border-gray-300 focus:border-primary"
                     />
                   </div>
-                  <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                     <Label htmlFor="lastName" className="text-gray-700 font-medium">Last Name *</Label>
                     <Input
                       id="lastName"
@@ -149,7 +149,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                   </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                   <Label htmlFor="email" className="text-gray-700 font-medium">Email Address *</Label>
                   <div className="relative mt-2">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
@@ -164,7 +164,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                   </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                   <Label htmlFor="phone" className="text-gray-700 font-medium">Phone Number</Label>
                   <div className="relative mt-2">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
@@ -183,15 +183,15 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
 
             {/* Step 2: Apartment Preferences */}
             {step === 2 && (
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 mb-6 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <Home className="w-6 h-6 text-white" />
+              <div className="space-y-4 md:space-y-6">
+                <div className="flex items-center gap-3 mb-4 md:mb-6 p-3 md:p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <Home className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800">Tell us about your ideal apartment</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-800">Tell us about your ideal apartment</h3>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                   <Label htmlFor="city" className="text-gray-700 font-medium">Preferred City *</Label>
                   <div className="relative mt-2">
                     <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 z-10" />
@@ -208,8 +208,8 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                     <Label htmlFor="budget" className="text-gray-700 font-medium">Monthly Budget *</Label>
                     <div className="relative mt-2">
                       <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 z-10" />
@@ -228,7 +228,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                     </div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                     <Label htmlFor="bedrooms" className="text-gray-700 font-medium">Bedrooms *</Label>
                     <Select value={formData.bedrooms} onValueChange={(value) => handleInputChange('bedrooms', value)}>
                       <SelectTrigger className="mt-2 border-2 border-gray-300 focus:border-primary">
@@ -245,7 +245,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                   </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                   <Label htmlFor="preferences" className="text-gray-700 font-medium">Special Preferences</Label>
                   <Textarea
                     id="preferences"
@@ -261,15 +261,15 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
 
             {/* Step 3: Timeline */}
             {step === 3 && (
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 mb-6 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <Calendar className="w-6 h-6 text-white" />
+              <div className="space-y-4 md:space-y-6">
+                <div className="flex items-center gap-3 mb-4 md:mb-6 p-3 md:p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <Calendar className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800">When do you want to move?</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-800">When do you want to move?</h3>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 md:p-4 rounded-xl border border-gray-200 shadow-sm">
                   <Label htmlFor="timeline" className="text-gray-700 font-medium">Move-in Timeline *</Label>
                   <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
                     <SelectTrigger className="mt-2 border-2 border-gray-300 focus:border-primary">
@@ -285,7 +285,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                   </Select>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border-2 border-green-200 shadow-lg">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 md:p-6 rounded-xl border-2 border-green-200 shadow-lg">
                   <div className="flex items-center gap-3 mb-4">
                     <CheckCircle className="w-6 h-6 text-green-600" />
                     <h4 className="font-semibold text-green-800">What happens next?</h4>
@@ -309,12 +309,12 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
             )}
 
             {/* Navigation Buttons with enhanced styling */}
-            <div className="flex justify-between mt-8 pt-6 border-t-2 border-gray-200">
+            <div className="flex justify-between mt-6 md:mt-8 pt-4 md:pt-6 border-t-2 border-gray-200">
               <Button
                 variant="outline"
                 onClick={handleBack}
                 disabled={step === 1}
-                className="px-6 border-2 border-gray-300 text-gray-700 hover:bg-gray-100"
+                className="px-4 md:px-6 border-2 border-gray-300 text-gray-700 hover:bg-gray-100"
               >
                 Back
               </Button>
@@ -323,7 +323,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                 <Button
                   onClick={handleNext}
                   disabled={!isStepValid()}
-                  className="bg-gradient-to-r from-primary to-orange-500 text-white px-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-gradient-to-r from-primary to-orange-500 text-white px-6 md:px-8 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Continue
                 </Button>
@@ -331,7 +331,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                 <Button
                   onClick={handleSubmit}
                   disabled={!isStepValid()}
-                  className="bg-gradient-to-r from-primary to-orange-500 text-white px-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-gradient-to-r from-primary to-orange-500 text-white px-6 md:px-8 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Submit & Get Matched
                 </Button>
@@ -339,8 +339,8 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
             </div>
           </div>
 
-          {/* Right Column - Testimonials with enhanced contrast */}
-          <div className="w-80 bg-gradient-to-br from-gray-100 to-gray-50 p-8 border-l-2 border-gray-200">
+          {/* Right Column - Testimonials - Hidden on mobile to save space */}
+          <div className="hidden lg:block w-80 bg-gradient-to-br from-gray-100 to-gray-50 p-8 border-l-2 border-gray-200 overflow-y-auto">
             <div className="mb-8">
               <h3 className="text-xl font-bold mb-2 text-gray-800">What Our Clients Say</h3>
               <p className="text-sm text-gray-600 font-medium">Join 1,000+ happy renters</p>
