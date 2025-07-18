@@ -195,10 +195,7 @@ const BlogPost = () => {
                   {/* Social Sharing */}
                   <div className="flex items-center gap-2 pt-4 border-t border-border">
                     <span className="text-sm font-medium text-muted-foreground mr-2">Share:</span>
-                    <Button variant="outline" size="sm" onClick={() => handleShare('facebook')} className="gap-2">
-                      <Facebook className="w-4 h-4" />
-                      Facebook
-                    </Button>
+                    
                     <Button variant="outline" size="sm" onClick={() => handleShare('twitter')} className="gap-2">
                       <Twitter className="w-4 h-4" />
                       Twitter
