@@ -1,12 +1,9 @@
-
 import { Search, Target, Home, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import SurveyModal from './SurveyModal';
 import BackgroundPatterns from './BackgroundPatterns';
-
 const HowItWorksSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const steps = [{
     step: 1,
     icon: Search,
@@ -32,9 +29,7 @@ const HowItWorksSection = () => {
     color: "from-green-500 to-emerald-400",
     glowColor: "emerald"
   }];
-
-  return (
-    <>
+  return <>
       <section id="how-it-works" className="py-20 relative overflow-hidden">
         {/* Background Patterns */}
         <BackgroundPatterns variant="bubbles" className="opacity-60" />
@@ -42,8 +37,12 @@ const HowItWorksSection = () => {
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary/20 to-orange-500/20 rounded-full blur-3xl floating"></div>
-          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-orange-400/20 to-primary/20 rounded-full blur-3xl floating" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-full blur-2xl floating" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-orange-400/20 to-primary/20 rounded-full blur-3xl floating" style={{
+          animationDelay: '1s'
+        }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-full blur-2xl floating" style={{
+          animationDelay: '2s'
+        }}></div>
         </div>
 
         {/* Gradient Overlay */}
@@ -71,8 +70,9 @@ const HowItWorksSection = () => {
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-                {steps.map((step, index) => (
-                  <div key={step.step} className="relative fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                {steps.map((step, index) => <div key={step.step} className="relative fade-in-up" style={{
+                animationDelay: `${index * 0.2}s`
+              }}>
                     {/* Step card */}
                     <div className="how-it-works-card rounded-3xl p-8 lg:p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group">
                       {/* Glow effect behind card */}
@@ -86,7 +86,7 @@ const HowItWorksSection = () => {
 
                       {/* Enhanced icon */}
                       <div className="mb-6 text-center">
-                        <step.icon className={`w-12 h-12 lg:w-16 lg:h-16 mx-auto text-${step.glowColor === 'orange' ? 'orange-500' : 'primary'} floating`} style={{ animationDelay: `${index * 0.5}s` }} />
+                        
                       </div>
 
                       {/* Content with improved typography */}
@@ -108,20 +108,19 @@ const HowItWorksSection = () => {
                     </div>
 
                     {/* Enhanced arrow for mobile */}
-                    {index < steps.length - 1 && (
-                      <div className="lg:hidden flex justify-center my-8">
+                    {index < steps.length - 1 && <div className="lg:hidden flex justify-center my-8">
                         <div className="w-12 h-12 bg-gradient-to-br from-primary to-orange-500 rounded-full flex items-center justify-center shadow-lg card-glow">
                           <ArrowRight className="w-6 h-6 text-white rotate-90" />
                         </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      </div>}
+                  </div>)}
               </div>
             </div>
 
             {/* Enhanced Bottom CTA */}
-            <div className="mt-20 text-center fade-in-up" style={{ animationDelay: '0.8s' }}>
+            <div className="mt-20 text-center fade-in-up" style={{
+            animationDelay: '0.8s'
+          }}>
               <div className="relative bg-gradient-to-br from-primary via-primary to-orange-500 p-12 lg:p-16 rounded-3xl shadow-2xl overflow-hidden">
                 {/* Background pattern overlay */}
                 <BackgroundPatterns variant="dots" className="opacity-20" />
@@ -137,10 +136,7 @@ const HowItWorksSection = () => {
                     Join hundreds of satisfied renters who found their dream home with our help. 
                     Start your free apartment search today!
                   </p>
-                  <button 
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-white text-primary px-10 py-4 lg:px-12 lg:py-5 rounded-2xl font-bold text-lg lg:text-xl hover:bg-gray-50 transition-all duration-300 inline-flex items-center space-x-3 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1"
-                  >
+                  <button onClick={() => setIsModalOpen(true)} className="bg-white text-primary px-10 py-4 lg:px-12 lg:py-5 rounded-2xl font-bold text-lg lg:text-xl hover:bg-gray-50 transition-all duration-300 inline-flex items-center space-x-3 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1">
                     <span>Get Started Now</span>
                     <ArrowRight className="w-6 h-6 floating" />
                   </button>
@@ -148,8 +144,12 @@ const HowItWorksSection = () => {
 
                 {/* Decorative floating elements */}
                 <div className="absolute top-6 right-6 w-16 h-16 bg-white/10 rounded-full floating"></div>
-                <div className="absolute bottom-6 left-6 w-12 h-12 bg-white/10 rounded-full floating" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 left-8 w-8 h-8 bg-white/10 rounded-full floating" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute bottom-6 left-6 w-12 h-12 bg-white/10 rounded-full floating" style={{
+                animationDelay: '1s'
+              }}></div>
+                <div className="absolute top-1/2 left-8 w-8 h-8 bg-white/10 rounded-full floating" style={{
+                animationDelay: '2s'
+              }}></div>
               </div>
             </div>
           </div>
@@ -157,8 +157,6 @@ const HowItWorksSection = () => {
       </section>
       
       <SurveyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} city="" />
-    </>
-  );
+    </>;
 };
-
 export default HowItWorksSection;
