@@ -18,6 +18,9 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        futuristic:
+          "relative rounded-full bg-gradient-to-r from-primary to-orange-deep text-primary-foreground ring-1 ring-orange/50 shadow-[0_8px_20px_0_hsl(var(--orange)/0.35)] hover:from-primary/90 hover:to-orange-deep/90 transition-[transform,shadow] hover:shadow-[0_12px_30px_0_hsl(var(--orange)/0.45)] hover:-translate-y-0.5 active:translate-y-0",
+
       },
       size: {
         default: "h-10 px-4 py-2",

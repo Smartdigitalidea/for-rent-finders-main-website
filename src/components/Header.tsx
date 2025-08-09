@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Phone, Building2, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SurveyModal from './SurveyModal';
 
@@ -11,27 +11,26 @@ const Header = () => {
   
   const menuItems = [
     { name: 'Home', href: '/', type: 'route' },
-    { name: 'About Us', href: '/about', type: 'route' },
-    { name: 'How It Works', href: '/how-it-works', type: 'route' },
-    { name: 'Blog', href: '/blog', type: 'route' },
-    { name: 'Contact', href: '/contact', type: 'route' }
+    { name: 'Properties', href: '/properties', type: 'route' },
+    { name: 'About', href: '/about', type: 'route' },
+    { name: 'Blog', href: '/blog', type: 'route' }
   ];
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 luxury-card bg-card/95 backdrop-blur-xl border-b border-border/50">
         {/* Top contact bar */}
-        <div className="bg-gradient-to-r from-primary to-orange-500 text-white py-2">
+        <div className="bg-foreground text-primary-foreground py-2">
           <div className="container mx-auto px-4 flex justify-center items-center space-x-6 text-sm">
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4" />
-              <a href="tel:8553677368" className="hover:text-orange-200 transition-colors">
+              <a href="tel:8553677368" className="hover:text-orange-glow transition-colors">
                 855-FOR-RENT 
               </a>
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="w-4 h-4" />
-              <a href="mailto:hello@forrentfinders.com" className="hover:text-orange-200 transition-colors">
+              <a href="mailto:hello@forrentfinders.com" className="hover:text-orange-glow transition-colors">
                 hello@forrentfinders.com
               </a>
             </div>
@@ -56,7 +55,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-gray-700 hover:text-orange-500 font-medium transition-colors text-base"
+                  className="text-foreground/80 hover:text-orange font-medium transition-colors text-base"
                 >
                   {item.name}
                 </Link>
@@ -69,7 +68,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-gray-700 hover:text-orange-500 font-medium transition-colors text-sm px-2"
+                  className="text-foreground/80 hover:text-orange font-medium transition-colors text-sm px-2"
                 >
                   {item.name}
                 </Link>
@@ -79,9 +78,10 @@ const Header = () => {
             {/* CTA Button */}
             <Button 
               onClick={() => setIsModalOpen(true)}
-              className="hidden md:block bg-gradient-to-r from-primary to-orange-500 hover:from-primary-deep hover:to-orange-deep text-white text-sm lg:text-base"
+              variant="futuristic"
+              className="hidden md:block"
             >
-              Get Started Free
+              Inquire Here
             </Button>
 
             {/* Mobile menu button */}
@@ -101,7 +101,7 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="text-gray-700 hover:text-orange-500 font-medium"
+                    className="text-foreground/80 hover:text-orange font-medium"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
@@ -112,9 +112,10 @@ const Header = () => {
                     setIsModalOpen(true);
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-gradient-to-r from-primary to-orange-500 hover:from-primary-deep hover:to-orange-deep text-white mt-4"
+                  variant="futuristic"
+                  className="w-full mt-4"
                 >
-                  Get Started Free
+                  Inquire Here
                 </Button>
               </nav>
             </div>
