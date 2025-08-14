@@ -1,73 +1,119 @@
-# Welcome to your Lovable project
+# 🏠 For Rent Finders - Miami & Broward Apartment Locator
 
-## Project info
+A modern, responsive website for For Rent Finders, the #1 apartment locator service in Miami and Broward counties.
 
-**URL**: https://lovable.dev/projects/900f37d5-7e99-47e4-afbf-06369b48b2ba
+## ✨ Features
 
-## How can I edit this code?
+### 🎯 **Hero Section**
+- **Image slider** with luxury apartment backgrounds
+- **Auto-rotating images** every 5 seconds
+- **Professional overlay** with brand colors
+- **Call-to-action** focused design
 
-There are several ways of editing your application.
+### 🏢 **Properties Page**
+- **Real property listings** with images and details
+- **Search and filter** functionality
+- **Professional property cards** with hover effects
+- **Responsive grid layout**
 
-**Use Lovable**
+### 📝 **Blog Section**
+- **Featured articles** with enhanced styling
+- **Category filtering** and search
+- **Modern card design** with images
+- **Professional typography** and layout
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/900f37d5-7e99-47e4-afbf-06369b48b2ba) and start prompting.
+### ℹ️ **About Page**
+- **Company story** with house images
+- **Values section** with visual elements
+- **Background images** with opacity overlays
+- **Professional team** showcase
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🎨 **Design Features**
 
-**Use your preferred IDE**
+- **Brand Colors**: Primary #F68036 (Orange), Text #232C5C (Dark Blue)
+- **Modern UI**: Clean, professional design with smooth animations
+- **Responsive**: Mobile-first design that works on all devices
+- **Visual Elements**: High-quality images and professional styling
+- **User Experience**: Intuitive navigation and clear call-to-actions
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 **Technology Stack**
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui components
+- **Build Tool**: Vite
+- **Routing**: React Router DOM
+- **State Management**: React Query
+- **Backend**: Supabase integration
+- **Icons**: Lucide React
 
-Follow these steps:
+## 📱 **Pages**
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. **Home** (`/`) - Hero section, about, latest deals
+2. **Properties** (`/properties`) - Property listings and search
+3. **Blog** (`/blog`) - Articles and insights
+4. **About** (`/about`) - Company information
+5. **Contact** (`/contact`) - Contact form
+6. **Admin** (`/lekan`) - Blog management
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🛠️ **Getting Started**
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Installation
+```bash
+# Clone the repository
+git clone [your-repo-url]
+
+# Navigate to project directory
+cd rent-find-miami-broward-95
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build
+```bash
+# Build for production
+npm run build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+# Preview production build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## 🌟 **Key Components**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **HeroSection**: Main landing section with image slider
+- **AboutSection**: Company information and features
+- **LatestDealsSection**: Property deals showcase
+- **Properties**: Full property listings page
+- **Blog**: Article management and display
+- **Header/Footer**: Navigation and site structure
 
-## What technologies are used for this project?
+## 📸 **Image Sources**
 
-This project is built with:
+All images are sourced from Unsplash for high-quality, professional real estate photography.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🔧 **Customization**
 
-## How can I deploy this project?
+- **Colors**: Update brand colors in Tailwind config
+- **Content**: Modify text and images in component files
+- **Styling**: Adjust CSS classes and Tailwind utilities
+- **Functionality**: Extend components with additional features
 
-Simply open [Lovable](https://lovable.dev/projects/900f37d5-7e99-47e4-afbf-06369b48b2ba) and click on Share -> Publish.
+## 📄 **License**
 
-## Can I connect a custom domain to my Lovable project?
+This project is proprietary software for For Rent Finders.
 
-Yes, you can!
+## 👥 **Team**
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Built with ❤️ for For Rent Finders - Miami & Broward's #1 Apartment Locator
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+**Live Demo**: [Your deployed URL]
+**Contact**: 855-FOR-RENT
