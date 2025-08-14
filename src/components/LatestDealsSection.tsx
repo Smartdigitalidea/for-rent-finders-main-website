@@ -85,7 +85,7 @@ const LatestDealsSection = () => {
                 <Star className="w-4 h-4 text-orange-500 fill-current" />
               </div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 glow-text">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-6 glow-text">
                 Don't Miss Out on These <span className="bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">Exclusive Offers</span>
               </h2>
               

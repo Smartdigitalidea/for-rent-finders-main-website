@@ -2,10 +2,7 @@
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import HowItWorksSection from '@/components/HowItWorksSection';
-import NeighborhoodsSection from '@/components/NeighborhoodsSection';
 import LatestDealsSection from '@/components/LatestDealsSection';
-import BlogSection from '@/components/BlogSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -14,10 +11,7 @@ const Index = () => {
       <Header />
       <HeroSection />
       <AboutSection />
-      <HowItWorksSection />
-      <NeighborhoodsSection />
       <LatestDealsSection />
-      <BlogSection />
       <Footer />
     </div>
   );
