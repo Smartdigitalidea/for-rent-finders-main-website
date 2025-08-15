@@ -16,10 +16,10 @@ const AboutSection = () => {
             </p>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-            {/* Left side - Feature blocks */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Features Grid - Redesigned Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center mb-20">
+            {/* Left Column - First 2 Benefits */}
+            <div className="space-y-8">
               <div className="text-center p-6 rounded-lg hover:shadow-lg transition-all duration-300">
                 <div className="w-16 h-16 bg-[#F68036] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-8 h-8 text-white" />
@@ -39,7 +39,23 @@ const AboutSection = () => {
                   Our team consists of licensed real estate professionals with deep market knowledge.
                 </p>
               </div>
+            </div>
 
+            {/* Center Column - Main Image */}
+            <div className="relative">
+              <div className="relative">
+                <img 
+                  src="https://i.imgur.com/egEWrQf.jpeg" 
+                  alt="For Rent Finders - Digital apartment search service" 
+                  className="rounded-2xl shadow-2xl w-full relative z-10 border-4 border-white/50"
+                />
+                {/* Subtle overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#F68036]/10 to-[#232C5C]/10 rounded-2xl"></div>
+              </div>
+            </div>
+
+            {/* Right Column - Last 2 Benefits */}
+            <div className="space-y-8">
               <div className="text-center p-6 rounded-lg hover:shadow-lg transition-all duration-300">
                 <div className="w-16 h-16 bg-[#F68036] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="w-8 h-8 text-white" />
@@ -60,15 +76,6 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
-
-            {/* Right side - Image */}
-            <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" 
-                alt="Person typing on laptop" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
-            </div>
           </div>
 
 
@@ -83,57 +90,51 @@ const AboutSection = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Left side - House illustration */}
+              {/* Left side - New Image */}
               <div className="relative">
-                <div className="w-80 h-80 mx-auto">
-                  <div className="relative w-full h-full">
-                    {/* House illustration */}
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-64 h-48 bg-white border-4 border-[#F68036] rounded-t-3xl"></div>
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-[#F68036] rounded-t-3xl"></div>
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#232C5C] rounded-full" style={{ bottom: '40px', left: 'calc(50% - 60px)' }}></div>
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#232C5C] rounded-full" style={{ bottom: '40px', left: 'calc(50% + 20px)' }}></div>
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-[#232C5C] rounded-full" style={{ bottom: '20px', left: 'calc(50% - 20px)' }}></div>
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-[#232C5C] rounded-full" style={{ bottom: '20px', left: 'calc(50% + 20px)' }}></div>
-                  </div>
-                </div>
+                <img 
+                  src="https://i.imgur.com/TSUNeHL.png" 
+                  alt="For Rent Finders - Digital apartment search service" 
+                  className="rounded-2xl shadow-lg w-full max-w-md mx-auto"
+                />
               </div>
 
               {/* Right side - 4 steps */}
               <div className="space-y-8">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#F68036] rounded-full flex items-center justify-center text-white font-bold text-lg">01</div>
-                  <div>
-                    <h4 className="text-xl font-bold text-[#232C5C] mb-2">SEARCH</h4>
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#F68036] to-[#F68036]/90 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-2 border-white/20 flex-shrink-0">01</div>
+                  <div className="flex-1">
+                    <h4 className="text-xl font-bold text-[#232C5C] mb-3">SEARCH</h4>
                     <p className="text-[#232C5C] leading-relaxed">
                       Search and explore our impressive range of apartments.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#F68036] rounded-full flex items-center justify-center text-white font-bold text-lg">02</div>
-                  <div>
-                    <h4 className="text-xl font-bold text-[#232C5C] mb-2">INQUIRE</h4>
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#F68036] to-[#F68036]/90 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-2 border-white/20 flex-shrink-0">02</div>
+                  <div className="flex-1">
+                    <h4 className="text-xl font-bold text-[#232C5C] mb-3">INQUIRE</h4>
                     <p className="text-[#232C5C] leading-relaxed">
                       Inquire to access personalized options and all the details you need on any apartment that caught your interest.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#F68036] rounded-full flex items-center justify-center text-white font-bold text-lg">03</div>
-                  <div>
-                    <h4 className="text-xl font-bold text-[#232C5C] mb-2">TOUR</h4>
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#F68036] to-[#F68036]/90 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-2 border-white/20 flex-shrink-0">03</div>
+                  <div className="flex-1">
+                    <h4 className="text-xl font-bold text-[#232C5C] mb-3">TOUR</h4>
                     <p className="text-[#232C5C] leading-relaxed">
                       Tour your top choices with one of our Realtors. *Virtual tours available
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#F68036] rounded-full flex items-center justify-center text-white font-bold text-lg">04</div>
-                  <div>
-                    <h4 className="text-xl font-bold text-[#232C5C] mb-2">APPLY</h4>
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#F68036] to-[#F68036]/90 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border-2 border-white/20 flex-shrink-0">04</div>
+                  <div className="flex-1">
+                    <h4 className="text-xl font-bold text-[#232C5C] mb-3">APPLY</h4>
                     <p className="text-[#232C5C] leading-relaxed">
                       Apply to your favorite apartment- that's it! We take care of everything.
                     </p>
