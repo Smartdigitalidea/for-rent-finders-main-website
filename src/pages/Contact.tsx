@@ -31,10 +31,10 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Call Us Anytime",
-      details: ["855-FOR-RENT", "(855-367-7368)"],
+      details: ["866-FOR-RENT", "(866-367-7368)"],
       subtitle: "Available 7 days a week",
       color: "from-green-500 to-emerald-400",
-      action: () => window.open('tel:8553677368')
+      action: () => window.open('tel:8663677368')
     },
     {
       icon: Mail,
@@ -295,11 +295,11 @@ const Contact = () => {
                   {/* Quick Actions */}
                   <div className="space-y-4">
                     <HoverButton 
-                      onClick={() => window.open('tel:8553677368')}
+                      onClick={() => window.open('tel:8663677368')}
                       className="w-full bg-gradient-to-r from-green-500 to-emerald-400 text-white font-semibold px-8 py-4 text-lg flex items-center justify-center"
                     >
                       <Phone className="w-5 h-5 mr-3" />
-                      Call 855-FOR-RENT Now
+                      Call 866-FOR-RENT Now
                     </HoverButton>
                     
                     <HoverButton 

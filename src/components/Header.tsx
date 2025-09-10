@@ -24,8 +24,8 @@ const Header = () => {
           <div className="container mx-auto px-4 flex justify-center items-center space-x-6 text-sm">
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4" />
-              <a href="tel:8553677368" className="hover:text-orange-glow transition-colors">
-                855-FOR-RENT 
+              <a href="tel:8663677368" className="hover:text-orange-glow transition-colors">
+                866-FOR-RENT 
               </a>
             </div>
             <div className="flex items-center space-x-2">

@@ -235,8 +235,8 @@ const BlogPost = () => {
                     We know the market inside and out and can help you navigate the competitive South Florida rental scene.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button onClick={() => window.open('tel:855-367-7368', '_self')} size="lg" className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-8 py-4 text-lg font-semibold">
-                      Call 855-FOR-RENT
+                    <Button onClick={() => window.open('tel:866-367-7368', '_self')} size="lg" className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground px-8 py-4 text-lg font-semibold">
+                      Call 866-FOR-RENT
                     </Button>
                     <Link to="/contact">
                       <Button variant="outline" size="lg" className="px-8 py-4 text-lg font-semibold">

@@ -97,7 +97,7 @@ const NotFound = () => {
         <div className="text-center">
           <p className="text-gray-600 mb-2">Need help finding an apartment?</p>
           <p className="text-[#3384B3] font-semibold">
-            Call us at <a href="tel:8553677368" className="hover:underline">855-FOR-RENT</a>
+            Call us at <a href="tel:8663677368" className="hover:underline">866-FOR-RENT</a>
           </p>
         </div>
       </div>

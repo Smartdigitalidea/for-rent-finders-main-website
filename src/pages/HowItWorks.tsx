@@ -214,11 +214,11 @@ const HowItWorks = () => {
                   </HoverButton>
                   
                   <HoverButton 
-                    onClick={() => window.open('tel:8553677368')}
+                    onClick={() => window.open('tel:8663677368')}
                     className="bg-white/80 text-primary border border-primary/20 font-semibold px-8 py-4 text-lg flex items-center justify-center"
                   >
                     <Phone className="w-5 h-5 mr-2" />
-                    Call 855-FOR-RENT
+                    Call 866-FOR-RENT
                   </HoverButton>
                 </div>
               </div>

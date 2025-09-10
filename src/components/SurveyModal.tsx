@@ -111,7 +111,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
       console.error('Survey submission error:', error);
       toast({
         title: "Submission failed",
-        description: "Please try again or call us at (855) 367-7368.",
+        description: "Please try again or call us at (866) 367-7368.",
         variant: "destructive",
       });
     } finally {

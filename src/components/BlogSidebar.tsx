@@ -100,8 +100,8 @@ const BlogSidebar = ({
         <p className="text-sm text-muted-foreground mb-4">
           Our expert team is here to help you find your perfect rental in South Florida.
         </p>
-        <button onClick={() => window.open('tel:855-367-7368', '_self')} className="w-full bg-primary hover:bg-primary-glow text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-          Call 855-FOR-RENT
+        <button onClick={() => window.open('tel:866-367-7368', '_self')} className="w-full bg-primary hover:bg-primary-glow text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+          Call 866-FOR-RENT
         </button>
       </div>
 

@@ -30,8 +30,8 @@ const ContactSection = () => {
                 <div className="text-center text-white">
                   <Phone className="w-12 h-12 mx-auto mb-4" />
                   <h3 className="text-2xl font-bold mb-2">Call Us Anytime</h3>
-                  <div className="text-3xl font-bold mb-2">855-FOR-RENT</div>
-                  <div className="text-lg opacity-90 mb-4">(That's +1 855-367-7368)</div>
+                  <div className="text-3xl font-bold mb-2">866-FOR-RENT</div>
+                  <div className="text-lg opacity-90 mb-4">(That's +1 866-367-7368)</div>
                   <p className="opacity-90">Our team is ready to help 7 days a week.</p>
                 </div>
               </div>

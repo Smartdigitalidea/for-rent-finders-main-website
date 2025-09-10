@@ -226,7 +226,7 @@ const About = () => {
                 </HoverButton>
                 
                 <HoverButton className="bg-white text-[#F68036] border-2 border-[#F68036] font-semibold px-8 py-4 text-lg hover:bg-[#F68036] hover:text-white transition-all duration-300">
-                  Call 855-FOR-RENT
+                  Call 866-FOR-RENT
                 </HoverButton>
               </div>
             </div>

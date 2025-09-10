@@ -317,7 +317,6 @@ const Properties = () => {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
         city={selectedProperty?.location || 'Miami'}
-        property={selectedProperty}
       />
     </div>
   );

@@ -23,7 +23,7 @@ const PropertyGallery = ({ isOpen, onClose, propertyTitle, images }: PropertyGal
   };
 
   const handleCall = () => {
-    window.open('tel:855-367-7368', '_self');
+    window.open('tel:866-367-7368', '_self');
   };
 
   return (
@@ -89,7 +89,7 @@ const PropertyGallery = ({ isOpen, onClose, propertyTitle, images }: PropertyGal
               className="flex-1 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-primary-foreground font-semibold"
             >
               <Phone className="w-4 h-4 mr-2" />
-              Call Now: 855-FOR-RENT
+              Call Now: 866-FOR-RENT
             </Button>
             
             <Button variant="outline" onClick={onClose}>
