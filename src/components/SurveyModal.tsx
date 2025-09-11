@@ -123,27 +123,44 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[95vh] p-0 overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-gradient-to-r from-primary to-orange-500 text-white p-4 relative overflow-hidden border-b border-white/10">
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-primary to-orange-500 text-white p-6 relative overflow-hidden border-b border-white/10">
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="relative z-10">
             <DialogHeader>
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                    <Home className="w-4 h-4" />
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <Home className="w-5 h-5" />
                   </div>
-                  <DialogTitle className="text-xl font-bold">Find Your Perfect Apartment</DialogTitle>
+                  <div>
+                    <DialogTitle className="text-2xl font-bold">Find Your Perfect Apartment</DialogTitle>
+                    <p className="text-white/90 text-sm mt-1">Tell us what you're looking for - it takes less than 3 minutes!</p>
+                  </div>
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={onClose}
-                  className="text-white hover:bg-white/10 h-6 w-6 p-0"
+                  className="text-white hover:bg-white/10 h-8 w-8 p-0"
                 >
-                  <X className="w-3 h-3" />
+                  <X className="w-4 h-4" />
                 </Button>
               </div>
             </DialogHeader>
+            
+            {/* Trust indicators */}
+            <div className="flex items-center gap-4 mt-6 mb-2">
+              <div className="flex items-center gap-1 bg-white/20 px-3 py-2 rounded-full">
+                <Star className="w-4 h-4 text-yellow-300 fill-current" />
+                <span className="text-sm font-medium">4.9 Rating</span>
+              </div>
+              <div className="bg-green-500/80 px-3 py-2 rounded-full">
+                <span className="text-sm font-medium">100% Free</span>
+              </div>
+              <div className="bg-white/20 px-3 py-2 rounded-full">
+                <span className="text-sm font-medium">No Obligation</span>
+              </div>
+            </div>
           </div>
         </div>
 
