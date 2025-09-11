@@ -132,10 +132,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                     <Home className="w-4 h-4" />
                   </div>
-                  <div>
-                    <DialogTitle className="text-xl font-bold">Find Your Perfect Apartment</DialogTitle>
-                    <p className="text-white/90 text-sm mt-0.5">Tell us what you're looking for - it takes less than 3 minutes!</p>
-                  </div>
+                  <DialogTitle className="text-xl font-bold">Find Your Perfect Apartment</DialogTitle>
                 </div>
                 <Button
                   variant="ghost"
@@ -147,20 +144,6 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
                 </Button>
               </div>
             </DialogHeader>
-            
-            {/* Trust indicators */}
-            <div className="flex items-center gap-3 mt-3">
-              <div className="flex items-center gap-1 bg-white/20 px-2 py-1 rounded-full">
-                <Star className="w-3 h-3 text-yellow-300 fill-current" />
-                <span className="text-xs font-medium">4.9 Rating</span>
-              </div>
-              <div className="bg-green-500/80 px-2 py-1 rounded-full">
-                <span className="text-xs font-medium">100% Free</span>
-              </div>
-              <div className="bg-white/20 px-2 py-1 rounded-full">
-                <span className="text-xs font-medium">No Obligation</span>
-              </div>
-            </div>
           </div>
         </div>
 
