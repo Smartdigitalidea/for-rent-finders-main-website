@@ -121,9 +121,9 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="max-w-2xl max-h-[90vh] p-0 overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-primary to-orange-500 text-white p-6 relative overflow-hidden">
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-primary to-orange-500 text-white p-6 relative overflow-hidden border-b border-white/10">
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="relative z-10">
             <DialogHeader>
@@ -165,10 +165,10 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
         </div>
 
         {/* Embedded Form */}
-        <div className="p-6">
+        <div className="flex-1 overflow-hidden">
           <iframe
             src="https://link.msgsndr.com/widget/form/xH2f6TFUbjW4m1xQByEV"
-            style={{width:'100%',height:'100%',border:'none',borderRadius:'3px'}}
+            style={{ width: '100%', height: '100%', border: 'none', borderRadius: '3px' }}
             id="inline-xH2f6TFUbjW4m1xQByEV" 
             data-layout="{'id':'INLINE'}"
             data-trigger-type="alwaysShow"
@@ -182,7 +182,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
             data-layout-iframe-id="inline-xH2f6TFUbjW4m1xQByEV"
             data-form-id="xH2f6TFUbjW4m1xQByEV"
             title="Find Your Perfect Apartment form"
-            className="min-h-[1324px]"
+            className="w-full h-full"
           />
           <script src="https://link.msgsndr.com/js/form_embed.js"></script>
         </div>
