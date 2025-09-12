@@ -121,7 +121,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[95vh] p-0 overflow-hidden flex flex-col">
+      <DialogContent className="max-w-4xl max-h-[90vh] p-0 overflow-hidden flex flex-col mt-8">
         {/* Header */}
         <div className="sticky top-0 z-10 bg-gradient-to-r from-primary to-orange-500 text-white p-6 relative overflow-hidden border-b border-white/10">
           <div className="absolute inset-0 bg-black/10"></div>
