@@ -95,7 +95,7 @@ const SurveyModal = ({
     }
   };
   return <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[95vh] p-0 overflow-hidden flex flex-col">
+      <DialogContent className="max-w-4xl h-[95vh] p-0 overflow-hidden flex flex-col">
         {/* Header */}
         <div className="sticky top-0 z-10 bg-gradient-to-r from-primary to-orange-500 text-white p-6 relative overflow-hidden border-b border-white/10">
           <div className="absolute inset-0 bg-black/10"></div>
@@ -123,7 +123,7 @@ const SurveyModal = ({
         </div>
 
         {/* Embedded Form */}
-        <div className="flex-1 overflow-hidden min-h-[700px] bg-transparent">
+        <div className="flex-1 min-h-0 overflow-auto bg-transparent">
           <iframe src="https://link.msgsndr.com/widget/form/xH2f6TFUbjW4m1xQByEV" style={{
           width: '100%',
           height: '700px',
