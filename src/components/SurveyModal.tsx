@@ -165,7 +165,7 @@ const SurveyModal = ({ isOpen, onClose, city }: SurveyModalProps) => {
         </div>
 
         {/* Embedded Form */}
-        <div className="flex-1 overflow-hidden min-h-[700px]">
+        <div className="flex-1 overflow-hidden min-h-[700px] bg-transparent">
           <iframe
             src="https://link.msgsndr.com/widget/form/xH2f6TFUbjW4m1xQByEV"
             style={{ width: '100%', height: '700px', border: 'none', borderRadius: '3px' }}
