@@ -280,7 +280,7 @@ const Properties = () => {
     }
   ];
 
-  const locations = ['all', 'Miami, Fort Lauderdale & The Palm Beaches'];
+  const locations = ['all', 'Miami', 'Fort Lauderdale', 'The Palm Beaches'];
   const bedOptions = ['all', '1', '2', '3'];
   const budgetOptions = [
     { value: 'all', label: 'All Budgets' },
@@ -293,7 +293,19 @@ const Properties = () => {
   const filteredProperties = properties.filter(property => {
     const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          property.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = selectedLocation === 'all' || property.location.includes(selectedLocation);
+    
+    let matchesLocation = selectedLocation === 'all';
+    if (!matchesLocation) {
+      if (selectedLocation === 'The Palm Beaches') {
+        matchesLocation = property.location.includes('Palm Beaches') || 
+                          property.location.includes('West Palm Beach') || 
+                          property.location.includes('Boca Raton') || 
+                          property.location.includes('Delray Beach');
+      } else {
+        matchesLocation = property.location.includes(selectedLocation);
+      }
+    }
+    
     const matchesBeds = selectedBeds === 'all' || property.beds.toString() === selectedBeds;
     
     let matchesBudget = true;
@@ -484,13 +496,14 @@ const Properties = () => {
                 </div>
 
                 {/* CTA Button */}
-                <Button 
-                  onClick={() => handleInquire(property)}
-                  className="w-full bg-[#F68036] hover:bg-[#F68036]/90 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Inquire Now - FREE
-                </Button>
+                <a href="tel:8663677368">
+                  <Button 
+                    className="w-full bg-[#F68036] hover:bg-[#F68036]/90 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call Now - FREE
+                  </Button>
+                </a>
               </div>
             </article>
           ))}
