@@ -92,14 +92,14 @@ const HeroSection = () => {
           {/* Location Badge */}
           <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-8 fade-in-up">
             <MapPin className="w-4 h-4 text-[#F68036]" />
-            <span className="font-medium text-sm">Miami-Dade & Broward Counties</span>
+            <span className="font-medium text-sm">Miami, Fort Lauderdale & The Palm Beaches</span>
           </div>
 
           {/* Main Content - Centered */}
           <div className="text-center">
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
-              MIAMI & BROWARD'S
+              MIAMI, FORT LAUDERDALE &<br />THE PALM BEACHES'
               <br />
               <span className="text-[#F68036] drop-shadow-lg">#1 APARTMENT</span>
               <br />

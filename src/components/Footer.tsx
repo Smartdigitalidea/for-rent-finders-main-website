@@ -19,7 +19,7 @@ const Footer = () => {
               />
               <div>
                 <h3 className="text-xl font-bold">For Rent Finders</h3>
-                <p className="text-gray-400 text-sm">Miami | Broward Apartments</p>
+                <p className="text-gray-400 text-sm">Miami, Fort Lauderdale & The Palm Beaches</p>
               </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
@@ -71,8 +71,8 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-orange-500 mt-1" />
                 <div>
-                  <p className="text-gray-300">Serving Miami-Dade &</p>
-                  <p className="text-gray-300">Broward Counties</p>
+                  <p className="text-gray-300">Serving Miami, Fort Lauderdale</p>
+                  <p className="text-gray-300">& The Palm Beaches</p>
                 </div>
               </div>
             </div>

@@ -66,7 +66,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800">Service Areas</h4>
-                    <p className="text-gray-600">Miami-Dade & Broward Counties</p>
+                    <p className="text-gray-600">Miami, Fort Lauderdale & The Palm Beaches</p>
                   </div>
                 </div>
               </div>

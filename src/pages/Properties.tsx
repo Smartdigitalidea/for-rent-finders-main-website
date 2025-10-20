@@ -25,7 +25,8 @@ const Properties = () => {
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
       ],
       image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=400&fit=crop",
       price: "$2,800",
@@ -43,12 +44,12 @@ const Properties = () => {
       title: "Beachfront Paradise",
       location: "Las Olas, Fort Lauderdale",
       images: [
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1494526585095-c41746248156?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=500&h=400&fit=crop",
       price: "$2,200",
       priceNum: 2200,
       originalPrice: "$2,600",
@@ -64,12 +65,14 @@ const Properties = () => {
       title: "Modern Downtown Loft",
       location: "Downtown, Fort Lauderdale",
       images: [
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=500&h=400&fit=crop",
       price: "$2,000",
       priceNum: 2000,
       originalPrice: "$2,300",
@@ -85,12 +88,12 @@ const Properties = () => {
       title: "Waterfront Marina View",
       location: "Marina Bay, Fort Lauderdale",
       images: [
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1574643156929-51fa098b0394?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1574643156929-51fa098b0394?w=500&h=400&fit=crop",
       price: "$3,100",
       priceNum: 3100,
       originalPrice: "$3,500",
@@ -106,12 +109,13 @@ const Properties = () => {
       title: "Historic Coral Gables Charm",
       location: "Coral Gables, Miami",
       images: [
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600563440091-6b7f0e8d1f1b?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600563438802-8d89a5e5f1e0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600563438984-cc3f2b3e9b0c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600563438960-88f8d17d9ab3?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?w=500&h=400&fit=crop",
       price: "$2,500",
       priceNum: 2500,
       originalPrice: "$2,800",
@@ -127,12 +131,11 @@ const Properties = () => {
       title: "Modern Aventura Luxury",
       location: "Aventura, Miami",
       images: [
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600210492507-c1b7c5d26bdc?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500&h=400&fit=crop",
       price: "$3,300",
       priceNum: 3300,
       originalPrice: "$3,700",
@@ -148,12 +151,15 @@ const Properties = () => {
       title: "Penthouse Ocean View",
       location: "South Beach, Miami",
       images: [
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600047509782-20d39509f26d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600047509952-c1dded39ce6b?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600047510029-3f4c5c7f24e1?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600047510179-b0e06ea6959e?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600047510273-f8f5d8b32f4e?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500&h=400&fit=crop",
       price: "$4,500",
       priceNum: 4500,
       originalPrice: "$5,200",
@@ -169,12 +175,12 @@ const Properties = () => {
       title: "Cozy West Palm Beach Studio",
       location: "West Palm Beach",
       images: [
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600121848675-4e90e0c0e6d5?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600121848747-1e6f3bda9b86?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600121848823-bbf6b4c1e1e8?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=500&h=400&fit=crop",
       price: "$2,100",
       priceNum: 2100,
       originalPrice: "$2,400",
@@ -190,12 +196,13 @@ const Properties = () => {
       title: "Boca Raton Resort Living",
       location: "Boca Raton, Palm Beaches",
       images: [
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600132806608-231446b2e7af?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600132806812-6b7ddbc7c3e9?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600132807239-6b3d8e1b6b6e?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600132807442-4e3e1b7e6d5d?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=500&h=400&fit=crop",
       price: "$3,800",
       priceNum: 3800,
       originalPrice: "$4,300",
@@ -211,12 +218,12 @@ const Properties = () => {
       title: "Delray Beach Paradise",
       location: "Delray Beach, Palm Beaches",
       images: [
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600132806608-231446b2e7af?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688960-e37a1b4a2d2b?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600132806608-231446b2e7af?w=500&h=400&fit=crop",
       price: "$2,900",
       priceNum: 2900,
       originalPrice: "$3,300",
@@ -232,12 +239,14 @@ const Properties = () => {
       title: "Wynwood Arts District Loft",
       location: "Wynwood, Miami",
       images: [
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688069-111ceda5c17d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688154-2c43df5e2b16?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688226-f1b08d3b5a1e?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688342-8b5b5f3e9d4d?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500&h=400&fit=crop",
       price: "$2,600",
       priceNum: 2600,
       originalPrice: "$3,000",
@@ -253,12 +262,12 @@ const Properties = () => {
       title: "Sunny Isles Beachfront Tower",
       location: "Sunny Isles, Miami",
       images: [
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1600607688560-f7e9f19e5c6f?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688656-a5e7e5f9d0f6?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688742-5c7e5f9d1e0e?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1600607688828-5c7e5f9d1f7e?w=800&h=600&fit=crop"
       ],
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1600607688560-f7e9f19e5c6f?w=500&h=400&fit=crop",
       price: "$5,200",
       priceNum: 5200,
       originalPrice: "$6,000",
@@ -271,7 +280,7 @@ const Properties = () => {
     }
   ];
 
-  const locations = ['all', 'Miami', 'Fort Lauderdale', 'Palm Beaches', 'Brickell', 'Las Olas', 'Downtown', 'Coral Gables', 'Aventura', 'South Beach', 'West Palm Beach', 'Boca Raton', 'Delray Beach', 'Wynwood', 'Sunny Isles'];
+  const locations = ['all', 'Miami, Fort Lauderdale & The Palm Beaches'];
   const bedOptions = ['all', '1', '2', '3'];
   const budgetOptions = [
     { value: 'all', label: 'All Budgets' },
