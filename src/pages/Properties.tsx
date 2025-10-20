@@ -4,6 +4,7 @@ import { MapPin, Bed, Bath, Square, Star, Search, Filter, Phone } from 'lucide-r
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SurveyModal from '@/components/SurveyModal';
+import PropertyGallery from '@/components/PropertyGallery';
 
 const Properties = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,14 +12,24 @@ const Properties = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('all');
   const [selectedBeds, setSelectedBeds] = useState('all');
+  const [selectedBudget, setSelectedBudget] = useState('all');
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryProperty, setGalleryProperty] = useState(null);
 
   const properties = [
     {
       id: 1,
       title: "Luxury Brickell High-Rise",
       location: "Brickell, Miami",
+      images: [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+      ],
       image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=400&fit=crop",
       price: "$2,800",
+      priceNum: 2800,
       originalPrice: "$3,200",
       beds: 2,
       baths: 2,
@@ -31,8 +42,15 @@ const Properties = () => {
       id: 2,
       title: "Beachfront Paradise",
       location: "Las Olas, Fort Lauderdale",
+      images: [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop"
+      ],
       image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&h=400&fit=crop",
       price: "$2,200",
+      priceNum: 2200,
       originalPrice: "$2,600",
       beds: 1,
       baths: 1,
@@ -45,8 +63,15 @@ const Properties = () => {
       id: 3,
       title: "Modern Downtown Loft",
       location: "Downtown, Fort Lauderdale",
+      images: [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
+      ],
       image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=400&fit=crop",
-      price: "$1,900",
+      price: "$2,000",
+      priceNum: 2000,
       originalPrice: "$2,300",
       beds: 1,
       baths: 1,
@@ -59,8 +84,15 @@ const Properties = () => {
       id: 4,
       title: "Waterfront Marina View",
       location: "Marina Bay, Fort Lauderdale",
+      images: [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+      ],
       image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=400&fit=crop",
       price: "$3,100",
+      priceNum: 3100,
       originalPrice: "$3,500",
       beds: 2,
       baths: 2,
@@ -73,8 +105,15 @@ const Properties = () => {
       id: 5,
       title: "Historic Coral Gables Charm",
       location: "Coral Gables, Miami",
+      images: [
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop"
+      ],
       image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=400&fit=crop",
       price: "$2,500",
+      priceNum: 2500,
       originalPrice: "$2,800",
       beds: 2,
       baths: 1,
@@ -87,8 +126,15 @@ const Properties = () => {
       id: 6,
       title: "Modern Aventura Luxury",
       location: "Aventura, Miami",
+      images: [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop"
+      ],
       image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=400&fit=crop",
       price: "$3,300",
+      priceNum: 3300,
       originalPrice: "$3,700",
       beds: 3,
       baths: 2,
@@ -96,11 +142,144 @@ const Properties = () => {
       rating: 4.8,
       features: ["Luxury Amenities", "Shopping Center", "Pool", "Gym"],
       available: true
+    },
+    {
+      id: 7,
+      title: "Penthouse Ocean View",
+      location: "South Beach, Miami",
+      images: [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+      ],
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&h=400&fit=crop",
+      price: "$4,500",
+      priceNum: 4500,
+      originalPrice: "$5,200",
+      beds: 3,
+      baths: 3,
+      sqft: 2000,
+      rating: 4.9,
+      features: ["Ocean View", "Private Terrace", "Concierge", "Spa Access"],
+      available: true
+    },
+    {
+      id: 8,
+      title: "Cozy West Palm Beach Studio",
+      location: "West Palm Beach",
+      images: [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop"
+      ],
+      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=400&fit=crop",
+      price: "$2,100",
+      priceNum: 2100,
+      originalPrice: "$2,400",
+      beds: 1,
+      baths: 1,
+      sqft: 750,
+      rating: 4.5,
+      features: ["City View", "Pool", "Near Downtown", "Pet-Friendly"],
+      available: true
+    },
+    {
+      id: 9,
+      title: "Boca Raton Resort Living",
+      location: "Boca Raton, Palm Beaches",
+      images: [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop"
+      ],
+      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=400&fit=crop",
+      price: "$3,800",
+      priceNum: 3800,
+      originalPrice: "$4,300",
+      beds: 2,
+      baths: 2,
+      sqft: 1500,
+      rating: 4.8,
+      features: ["Golf Course View", "Resort Pool", "Spa", "Tennis Court"],
+      available: true
+    },
+    {
+      id: 10,
+      title: "Delray Beach Paradise",
+      location: "Delray Beach, Palm Beaches",
+      images: [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
+      ],
+      image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=400&fit=crop",
+      price: "$2,900",
+      priceNum: 2900,
+      originalPrice: "$3,300",
+      beds: 2,
+      baths: 2,
+      sqft: 1300,
+      rating: 4.7,
+      features: ["Beach Access", "Rooftop Deck", "BBQ Area", "Parking"],
+      available: true
+    },
+    {
+      id: 11,
+      title: "Wynwood Arts District Loft",
+      location: "Wynwood, Miami",
+      images: [
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+      ],
+      image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=400&fit=crop",
+      price: "$2,600",
+      priceNum: 2600,
+      originalPrice: "$3,000",
+      beds: 1,
+      baths: 1,
+      sqft: 950,
+      rating: 4.6,
+      features: ["Art Gallery", "Exposed Brick", "High Ceilings", "Trendy Area"],
+      available: true
+    },
+    {
+      id: 12,
+      title: "Sunny Isles Beachfront Tower",
+      location: "Sunny Isles, Miami",
+      images: [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
+      ],
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&h=400&fit=crop",
+      price: "$5,200",
+      priceNum: 5200,
+      originalPrice: "$6,000",
+      beds: 3,
+      baths: 3,
+      sqft: 2200,
+      rating: 4.9,
+      features: ["Direct Beach Access", "Infinity Pool", "Valet", "Smart Home"],
+      available: true
     }
   ];
 
-  const locations = ['all', 'Miami', 'Fort Lauderdale', 'Brickell', 'Las Olas', 'Downtown', 'Coral Gables', 'Aventura'];
+  const locations = ['all', 'Miami', 'Fort Lauderdale', 'Palm Beaches', 'Brickell', 'Las Olas', 'Downtown', 'Coral Gables', 'Aventura', 'South Beach', 'West Palm Beach', 'Boca Raton', 'Delray Beach', 'Wynwood', 'Sunny Isles'];
   const bedOptions = ['all', '1', '2', '3'];
+  const budgetOptions = [
+    { value: 'all', label: 'All Budgets' },
+    { value: '2000-3000', label: '$2,000 - $3,000' },
+    { value: '3000-4000', label: '$3,000 - $4,000' },
+    { value: '4000-5000', label: '$4,000 - $5,000' },
+    { value: '5000-10000', label: '$5,000 - $10,000' }
+  ];
 
   const filteredProperties = properties.filter(property => {
     const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -108,12 +287,23 @@ const Properties = () => {
     const matchesLocation = selectedLocation === 'all' || property.location.includes(selectedLocation);
     const matchesBeds = selectedBeds === 'all' || property.beds.toString() === selectedBeds;
     
-    return matchesSearch && matchesLocation && matchesBeds;
+    let matchesBudget = true;
+    if (selectedBudget !== 'all') {
+      const [min, max] = selectedBudget.split('-').map(Number);
+      matchesBudget = property.priceNum >= min && property.priceNum <= max;
+    }
+    
+    return matchesSearch && matchesLocation && matchesBeds && matchesBudget;
   });
 
   const handleInquire = (property) => {
     setSelectedProperty(property);
     setIsModalOpen(true);
+  };
+
+  const handleImageClick = (property) => {
+    setGalleryProperty(property);
+    setGalleryOpen(true);
   };
 
   return (
@@ -127,7 +317,7 @@ const Properties = () => {
             Available <span className="text-[#F68036]">Properties</span>
           </h1>
           <p className="text-xl text-[#232C5C] max-w-3xl mx-auto leading-relaxed">
-            Explore our curated selection of premium apartments across Miami and Fort Lauderdale. 
+            Explore our curated selection of premium apartments across Miami, Fort Lauderdale & The Palm Beaches. 
             Find your perfect home with our 100% free service.
           </p>
         </header>
@@ -135,7 +325,7 @@ const Properties = () => {
         {/* Search and Filter Section */}
         <section className="mb-12">
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
               {/* Search Input */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -174,6 +364,19 @@ const Properties = () => {
                 ))}
               </select>
 
+              {/* Budget Filter */}
+              <select
+                value={selectedBudget}
+                onChange={(e) => setSelectedBudget(e.target.value)}
+                className="px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#F68036] focus:border-transparent bg-white"
+              >
+                {budgetOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+
               {/* Results Count */}
               <div className="flex items-center justify-center px-4 py-3 bg-gray-50 rounded-lg">
                 <span className="text-[#232C5C] font-medium">
@@ -189,12 +392,23 @@ const Properties = () => {
           {filteredProperties.map((property) => (
             <article key={property.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 group">
               {/* Property Image */}
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div 
+                className="relative aspect-[4/3] overflow-hidden cursor-pointer"
+                onClick={() => handleImageClick(property)}
+              >
                 <img
                   src={property.image}
                   alt={property.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                
+                {/* Gallery Indicator */}
+                <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                  </svg>
+                  {property.images.length} Photos
+                </div>
                 
                 {/* Rating Badge */}
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full flex items-center gap-1">
@@ -318,6 +532,15 @@ const Properties = () => {
         onClose={() => setIsModalOpen(false)} 
         city={selectedProperty?.location || 'Miami'}
       />
+
+      {galleryProperty && (
+        <PropertyGallery
+          isOpen={galleryOpen}
+          onClose={() => setGalleryOpen(false)}
+          propertyTitle={galleryProperty.title}
+          images={galleryProperty.images}
+        />
+      )}
     </div>
   );
 };
