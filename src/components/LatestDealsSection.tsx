@@ -205,36 +205,6 @@ const LatestDealsSection = () => {
                 </div>
               ))}
             </div>
-
-            {/* Enhanced Bottom CTA */}
-            <div className="text-center fade-in-up">
-              <div className="relative bg-gradient-to-br from-primary via-primary-glow to-orange-500 p-10 md:p-16 rounded-3xl overflow-hidden shadow-2xl">
-                {/* Background Pattern Overlay */}
-                <BackgroundPatterns variant="grid" className="opacity-20" />
-                
-                {/* Floating Elements */}
-                <div className="absolute top-8 right-8 w-16 h-16 bg-white/10 rounded-full floating"></div>
-                <div className="absolute bottom-8 left-8 w-12 h-12 bg-white/10 rounded-full floating" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 left-12 w-8 h-8 bg-white/10 rounded-full floating" style={{ animationDelay: '2s' }}></div>
-                
-                <div className="relative z-10">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 glow-text">
-                    Ready to Secure Your Dream Deal?
-                  </h3>
-                  <p className="text-white/90 mb-8 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-                    These exclusive offers are available for a limited time. Don't miss out on 
-                    significant savings on premium apartments!
-                  </p>
-                  <Button 
-                    size="lg"
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-white text-primary hover:bg-gray-50 font-bold px-10 py-4 text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                  >
-                    View All Exclusive Deals
-                  </Button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
