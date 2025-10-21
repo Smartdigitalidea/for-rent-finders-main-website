@@ -142,26 +142,6 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* CTA Section - Ready to Secure Your Dream Deal */}
-          <div className="mb-20">
-            <div className="relative bg-gradient-to-br from-[#232C5C] via-[#232C5C] to-[#F68036] p-10 md:p-16 rounded-3xl overflow-hidden shadow-2xl">
-              {/* Floating Elements */}
-              <div className="absolute top-8 right-8 w-16 h-16 bg-white/10 rounded-full animate-bounce"></div>
-              <div className="absolute bottom-8 left-8 w-12 h-12 bg-white/10 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-1/2 left-12 w-8 h-8 bg-white/10 rounded-full animate-bounce" style={{ animationDelay: '2s' }}></div>
-              
-              <div className="relative z-10 text-center">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-                  Ready to Secure Your Dream Deal?
-                </h3>
-                <p className="text-white/90 mb-8 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-                  These exclusive offers are available for a limited time. Don't miss out on 
-                  significant savings on premium apartments!
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* About Us section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -213,6 +193,26 @@ const AboutSection = () => {
                 <div className="text-3xl font-bold text-[#232C5C] mb-2">4/5</div>
                 <div className="text-sm text-[#232C5C]">Client Ratings</div>
                 <div className="text-xs text-[#232C5C]">Average review score</div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section - Ready to Secure Your Dream Deal */}
+          <div className="mt-20">
+            <div className="relative bg-gradient-to-br from-[#232C5C] via-[#232C5C] to-[#F68036] p-10 md:p-16 rounded-3xl overflow-hidden shadow-2xl">
+              {/* Floating Elements */}
+              <div className="absolute top-8 right-8 w-16 h-16 bg-white/10 rounded-full animate-bounce"></div>
+              <div className="absolute bottom-8 left-8 w-12 h-12 bg-white/10 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-1/2 left-12 w-8 h-8 bg-white/10 rounded-full animate-bounce" style={{ animationDelay: '2s' }}></div>
+              
+              <div className="relative z-10 text-center">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                  Ready to Secure Your Dream Deal?
+                </h3>
+                <p className="text-white/90 mb-8 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+                  These exclusive offers are available for a limited time. Don't miss out on 
+                  significant savings on premium apartments!
+                </p>
               </div>
             </div>
           </div>
