@@ -17,7 +17,7 @@ const HowItWorksServiceSection = () => {
               {/* Left side - Image */}
               <div className="relative">
                 <img 
-                  src="https://i.imgur.com/TSUNeHL.png" 
+                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=800&fit=crop" 
                   alt="For Rent Finders - Digital apartment search service" 
                   className="rounded-2xl shadow-lg w-full max-w-md mx-auto"
                 />
