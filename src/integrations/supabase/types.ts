@@ -7,126 +7,20 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "13.0.5"
   }
   public: {
     Tables: {
-      automated_blog_logs: {
-        Row: {
-          created_at: string
-          error_message: string | null
-          id: string
-          post_id: string | null
-          schedule_type: string
-          status: string
-          topic: string | null
-        }
-        Insert: {
-          created_at?: string
-          error_message?: string | null
-          id?: string
-          post_id?: string | null
-          schedule_type: string
-          status?: string
-          topic?: string | null
-        }
-        Update: {
-          created_at?: string
-          error_message?: string | null
-          id?: string
-          post_id?: string | null
-          schedule_type?: string
-          status?: string
-          topic?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "automated_blog_logs_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "blog_posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      blog_posts: {
-        Row: {
-          author: string
-          category: string
-          content: string
-          created_at: string
-          excerpt: string
-          featured: boolean
-          id: string
-          image_url: string
-          keywords: string[] | null
-          meta_description: string | null
-          meta_title: string | null
-          published_at: string
-          read_time: string
-          scheduled_at: string | null
-          slug: string | null
-          status: string | null
-          tags: string[] | null
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          author?: string
-          category: string
-          content: string
-          created_at?: string
-          excerpt: string
-          featured?: boolean
-          id?: string
-          image_url: string
-          keywords?: string[] | null
-          meta_description?: string | null
-          meta_title?: string | null
-          published_at?: string
-          read_time?: string
-          scheduled_at?: string | null
-          slug?: string | null
-          status?: string | null
-          tags?: string[] | null
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          author?: string
-          category?: string
-          content?: string
-          created_at?: string
-          excerpt?: string
-          featured?: boolean
-          id?: string
-          image_url?: string
-          keywords?: string[] | null
-          meta_description?: string | null
-          meta_title?: string | null
-          published_at?: string
-          read_time?: string
-          scheduled_at?: string | null
-          slug?: string | null
-          status?: string | null
-          tags?: string[] | null
-          title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      generate_slug: {
-        Args: { title_text: string }
-        Returns: string
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
