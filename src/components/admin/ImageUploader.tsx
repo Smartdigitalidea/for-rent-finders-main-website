@@ -6,10 +6,19 @@ import { useToast } from '@/hooks/use-toast';
 
 interface ImageUploaderProps {
   currentImage?: string;
-  onImageUpload: (imageUrl: string) => void;
+  currentImages?: string[];
+  onImageUpload?: (imageUrl: string) => void;
+  onImagesChange?: (imageUrls: string[]) => void;
+  multiple?: boolean;
 }
 
-const ImageUploader = ({ currentImage, onImageUpload }: ImageUploaderProps) => {
+const ImageUploader = ({ 
+  currentImage, 
+  currentImages = [], 
+  onImageUpload,
+  onImagesChange,
+  multiple = false 
+}: ImageUploaderProps) => {
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const { toast } = useToast();
@@ -52,7 +61,11 @@ const ImageUploader = ({ currentImage, onImageUpload }: ImageUploaderProps) => {
         .from('blog-images')
         .getPublicUrl(filePath);
 
-      onImageUpload(data.publicUrl);
+      if (multiple && onImagesChange) {
+        onImagesChange([...currentImages, data.publicUrl]);
+      } else if (onImageUpload) {
+        onImageUpload(data.publicUrl);
+      }
       
       toast({
         title: "Success",
@@ -74,26 +87,61 @@ const ImageUploader = ({ currentImage, onImageUpload }: ImageUploaderProps) => {
     e.preventDefault();
     setDragOver(false);
     
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      handleFileUpload(file);
+    if (multiple) {
+      const files = Array.from(e.dataTransfer.files);
+      files.forEach(file => handleFileUpload(file));
+    } else {
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        handleFileUpload(file);
+      }
     }
   };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      handleFileUpload(file);
+    if (multiple) {
+      const files = e.target.files ? Array.from(e.target.files) : [];
+      files.forEach(file => handleFileUpload(file));
+    } else {
+      const file = e.target.files?.[0];
+      if (file) {
+        handleFileUpload(file);
+      }
     }
   };
 
-  const removeImage = () => {
-    onImageUpload('');
+  const removeImage = (index?: number) => {
+    if (multiple && onImagesChange && typeof index === 'number') {
+      const newImages = currentImages.filter((_, i) => i !== index);
+      onImagesChange(newImages);
+    } else if (onImageUpload) {
+      onImageUpload('');
+    }
   };
 
   return (
     <div className="space-y-4">
-      {currentImage ? (
+      {multiple && currentImages.length > 0 ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {currentImages.map((image, index) => (
+            <div key={index} className="relative">
+              <img
+                src={image}
+                alt={`Property image ${index + 1}`}
+                className="w-full h-48 object-cover rounded-lg"
+              />
+              <Button
+                variant="destructive"
+                size="sm"
+                className="absolute top-2 right-2"
+                onClick={() => removeImage(index)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+          ))}
+        </div>
+      ) : !multiple && currentImage ? (
         <div className="relative inline-block">
           <img
             src={currentImage}
@@ -104,12 +152,13 @@ const ImageUploader = ({ currentImage, onImageUpload }: ImageUploaderProps) => {
             variant="destructive"
             size="sm"
             className="absolute top-2 right-2"
-            onClick={removeImage}
+            onClick={() => removeImage()}
           >
             <X className="w-4 h-4" />
           </Button>
         </div>
-      ) : (
+      ) : null}
+      {(multiple || !currentImage) && (
         <div
           className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
             dragOver ? 'border-primary bg-primary/5' : 'border-muted-foreground/25'
@@ -122,13 +171,16 @@ const ImageUploader = ({ currentImage, onImageUpload }: ImageUploaderProps) => {
           onDragLeave={() => setDragOver(false)}
         >
           <ImageIcon className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-          <h3 className="text-lg font-medium mb-2">Upload Featured Image</h3>
+          <h3 className="text-lg font-medium mb-2">
+            {multiple ? 'Upload Property Images' : 'Upload Featured Image'}
+          </h3>
           <p className="text-muted-foreground mb-4">
-            Drag and drop an image here, or click to select
+            Drag and drop {multiple ? 'images' : 'an image'} here, or click to select
           </p>
           <input
             type="file"
             accept="image/*"
+            multiple={multiple}
             onChange={handleFileSelect}
             className="hidden"
             id="image-upload"
@@ -140,7 +192,7 @@ const ImageUploader = ({ currentImage, onImageUpload }: ImageUploaderProps) => {
             disabled={uploading}
           >
             <Upload className="w-4 h-4 mr-2" />
-            {uploading ? 'Uploading...' : 'Select Image'}
+            {uploading ? 'Uploading...' : `Select ${multiple ? 'Images' : 'Image'}`}
           </Button>
           <p className="text-xs text-muted-foreground mt-2">
             Maximum file size: 5MB. Supported formats: JPG, PNG, WebP, GIF
