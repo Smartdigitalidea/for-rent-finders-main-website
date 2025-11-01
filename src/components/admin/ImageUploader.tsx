@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
-import { Upload, X, Image as ImageIcon } from 'lucide-react';
+import { Upload, X, Image as ImageIcon, Link } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 
 interface ImageUploaderProps {
@@ -21,6 +22,7 @@ const ImageUploader = ({
 }: ImageUploaderProps) => {
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
   const { toast } = useToast();
 
   const handleFileUpload = async (file: File) => {
@@ -119,8 +121,54 @@ const ImageUploader = ({
     }
   };
 
+  const handleAddUrl = () => {
+    if (!imageUrl.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid image URL",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (multiple && onImagesChange) {
+      onImagesChange([...currentImages, imageUrl.trim()]);
+    } else if (onImageUpload) {
+      onImageUpload(imageUrl.trim());
+    }
+    
+    setImageUrl('');
+    toast({
+      title: "Success",
+      description: "Image URL added successfully",
+    });
+  };
+
   return (
     <div className="space-y-4">
+      <div className="flex gap-2">
+        <Input
+          type="text"
+          placeholder="Or paste image URL here..."
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              handleAddUrl();
+            }
+          }}
+        />
+        <Button
+          type="button"
+          onClick={handleAddUrl}
+          variant="outline"
+          className="shrink-0"
+        >
+          <Link className="w-4 h-4 mr-2" />
+          Add URL
+        </Button>
+      </div>
       {multiple && currentImages.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {currentImages.map((image, index) => (

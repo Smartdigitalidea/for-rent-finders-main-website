@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Search, Edit, Eye, Trash2, MoreHorizontal, Calendar, Tag } from 'lucide-react';
+import { Search, Edit, Eye, Trash2, MoreHorizontal, Calendar, Tag, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -111,6 +111,36 @@ const BlogPostList = ({ posts, loading, onEdit, onRefresh }: BlogPostListProps) 
     }
   };
 
+  const exportToGoogleSheets = () => {
+    const headers = ['Title', 'Category', 'Author', 'Status', 'Published Date', 'Excerpt'];
+    const rows = filteredPosts.map(post => [
+      post.title,
+      post.category,
+      post.author,
+      post.status,
+      post.published_at ? new Date(post.published_at).toLocaleDateString() : 'Not published',
+      post.excerpt
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `blog-posts-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+
+    toast({
+      title: "Exported",
+      description: "Blog posts exported. Import this CSV file into Google Sheets.",
+    });
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -157,6 +187,11 @@ const BlogPostList = ({ posts, loading, onEdit, onRefresh }: BlogPostListProps) 
             ))}
           </SelectContent>
         </Select>
+
+        <Button onClick={exportToGoogleSheets} variant="outline" className="gap-2 shrink-0">
+          <Download className="w-4 h-4" />
+          Export CSV
+        </Button>
       </div>
 
       {/* Posts Table */}

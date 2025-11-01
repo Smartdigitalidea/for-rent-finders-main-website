@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MoreVertical, Search, Pencil, Trash2, Eye } from 'lucide-react';
+import { MoreVertical, Search, Pencil, Trash2, Eye, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -122,6 +122,38 @@ const PropertyList = ({ properties, loading, onEdit, onRefresh }: PropertyListPr
     }
   };
 
+  const exportToGoogleSheets = () => {
+    const headers = ['Title', 'Location', 'Price', 'Beds', 'Baths', 'Sqft', 'Status', 'Featured'];
+    const rows = filteredProperties.map(property => [
+      property.title,
+      property.location,
+      property.price,
+      property.beds,
+      property.baths,
+      property.sqft,
+      property.status,
+      property.featured ? 'Yes' : 'No'
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `properties-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+
+    toast({
+      title: "Exported",
+      description: "Properties exported. Import this CSV file into Google Sheets.",
+    });
+  };
+
   if (loading) {
     return <div className="text-center py-8">Loading properties...</div>;
   }
@@ -148,6 +180,10 @@ const PropertyList = ({ properties, loading, onEdit, onRefresh }: PropertyListPr
             <SelectItem value="draft">Draft</SelectItem>
           </SelectContent>
         </Select>
+        <Button onClick={exportToGoogleSheets} variant="outline" className="gap-2">
+          <Download className="w-4 h-4" />
+          Export CSV
+        </Button>
       </div>
 
       <div className="border rounded-lg">

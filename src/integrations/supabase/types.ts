@@ -166,6 +166,56 @@ export type Database = {
         }
         Relationships: []
       }
+      property_bookings: {
+        Row: {
+          check_in: string
+          check_out: string
+          created_at: string
+          guest_email: string
+          guest_name: string
+          id: string
+          notes: string | null
+          property_id: string
+          status: string
+          total_price: string
+          updated_at: string
+        }
+        Insert: {
+          check_in: string
+          check_out: string
+          created_at?: string
+          guest_email: string
+          guest_name: string
+          id?: string
+          notes?: string | null
+          property_id: string
+          status?: string
+          total_price: string
+          updated_at?: string
+        }
+        Update: {
+          check_in?: string
+          check_out?: string
+          created_at?: string
+          guest_email?: string
+          guest_name?: string
+          id?: string
+          notes?: string | null
+          property_id?: string
+          status?: string
+          total_price?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_bookings_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
