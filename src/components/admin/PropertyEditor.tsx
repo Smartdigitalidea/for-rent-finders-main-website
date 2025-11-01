@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowLeft, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -60,6 +60,31 @@ const PropertyEditor = ({ property, onSave, onCancel }: PropertyEditorProps) => 
   const [amenitiesText, setAmenitiesText] = useState(
     property?.amenities?.join(', ') || ''
   );
+
+  // Update form data when property prop changes
+  useEffect(() => {
+    if (property) {
+      setFormData(property);
+      setAmenitiesText(property.amenities?.join(', ') || '');
+    } else {
+      setFormData({
+        title: '',
+        location: '',
+        images: [],
+        price: '',
+        price_num: 0,
+        original_price: '',
+        beds: 1,
+        baths: 1,
+        sqft: 0,
+        amenities: [],
+        description: '',
+        status: 'draft',
+        featured: false,
+      });
+      setAmenitiesText('');
+    }
+  }, [property]);
 
   const handleInputChange = (field: keyof Property, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
