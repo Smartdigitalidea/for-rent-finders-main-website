@@ -11,7 +11,7 @@ const Header = () => {
   
   const menuItems = [
     { name: 'Home', href: '/', type: 'route' },
-    { name: 'Properties', href: '/properties', type: 'route' },
+    { name: 'Properties', href: 'https://framed.smartapartmentdata.com/searchbasic.aspx?siteid=d32889aa-07d5-42d6-9649-4ade91e33f78&market=miami', type: 'external' },
     { name: 'About', href: '/about', type: 'route' },
     { name: 'Blog', href: '/blog', type: 'route' }
   ];
@@ -52,26 +52,50 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex space-x-8">
               {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-foreground/80 hover:text-orange font-medium transition-colors text-base"
-                >
-                  {item.name}
-                </Link>
+                item.type === 'external' ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground/80 hover:text-orange font-medium transition-colors text-base"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-foreground/80 hover:text-orange font-medium transition-colors text-base"
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
             </nav>
 
             {/* Tablet Navigation */}
             <nav className="hidden md:flex lg:hidden space-x-3">
               {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-foreground/80 hover:text-orange font-medium transition-colors text-sm px-2"
-                >
-                  {item.name}
-                </Link>
+                item.type === 'external' ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground/80 hover:text-orange font-medium transition-colors text-sm px-2"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-foreground/80 hover:text-orange font-medium transition-colors text-sm px-2"
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
             </nav>
 
@@ -98,14 +122,27 @@ const Header = () => {
             <div className="md:hidden py-4 border-t">
               <nav className="flex flex-col space-y-4">
                 {menuItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="text-foreground/80 hover:text-orange font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
+                  item.type === 'external' ? (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground/80 hover:text-orange font-medium"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="text-foreground/80 hover:text-orange font-medium"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 ))}
                 <Button 
                   onClick={() => {
