@@ -63,11 +63,11 @@ const About = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-8 text-white">
-              Your Trusted <span className="text-[#F68036]">Apartment Experts</span>
+              White-Glove <span className="text-[#F68036]">Luxury Rentals</span>
             </h1>
             
             <p className="text-xl text-white/90 mb-10 leading-relaxed">
-              We're passionate local experts who make finding your perfect apartment in Miami and Fort Lauderdale completely stress-free and 100% free for you.
+              Concierge-style rental experience for discerning renters across Miami-Dade, Broward, and Palm Beach counties—completely free.
             </p>
 
             <HoverButton className="bg-[#F68036] hover:bg-[#F68036]/90 text-white font-semibold px-8 py-4 text-lg">
@@ -103,20 +103,28 @@ const About = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="fade-in-left">
                 <h2 className="text-3xl md:text-5xl font-bold mb-8 text-[#232C5C]">
-                  Our <span className="text-[#F68036]">Story</span>
+                  Transforming Luxury <span className="text-[#F68036]">Rental Experience</span>
                 </h2>
                 
                 <div className="space-y-6 text-lg text-[#232C5C]/80 leading-relaxed">
                   <p>
-                    Founded by South Florida natives who experienced the frustration of apartment hunting firsthand, For Rent Finders was born from a simple mission: make finding your perfect home effortless and free.
+                    Founded by South Florida natives with a deep understanding of Miami's luxury lifestyle, For Rent Finders was created with one purpose: to transform the way discerning renters secure their next home.
                   </p>
                   
                   <p>
-                    After years in the real estate industry, we noticed how overwhelming and time-consuming apartment searching could be. Renters were spending weeks scrolling through listings, scheduling viewings, and dealing with unresponsive landlords.
+                    After years in the real estate industry, we recognized a major gap—high-caliber clients were wasting valuable time sifting through outdated listings, coordinating endless showings, and chasing unresponsive leasing offices. The experience simply didn't match the level of service they deserved.
                   </p>
                   
+                  <p className="font-semibold text-[#232C5C]">
+                    So we built something different.
+                  </p>
+
                   <p>
-                    We decided to change that. Today, we've helped over 1,000 renters find their dream apartments across Miami-Dade and Broward counties, and we're just getting started.
+                    For Rent Finders provides a white-glove, concierge-style rental experience—completely free to you. From sleek high-rise residences in Brickell and waterfront escapes in Fort Lauderdale to private, ultra-luxury rentals in Miami Beach, Boca Raton, and the Palm Beaches, our team curates only the best options tailored to your lifestyle.
+                  </p>
+
+                  <p>
+                    With over 1,000 successful placements across Miami-Dade, Broward, and Palm Beach counties, our reputation is built on efficiency, access, and elevated service. We handle every detail so you can enjoy a seamless, stress-free search—and step effortlessly into a home that reflects your taste, your standards, and your life.
                   </p>
                 </div>
               </div>
