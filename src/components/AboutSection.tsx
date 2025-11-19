@@ -145,12 +145,15 @@ const AboutSection = () => {
           {/* About Us section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="text-4xl font-bold text-[#232C5C] mb-6">About Us</h3>
-              <p className="text-[#232C5C] leading-relaxed mb-8 text-lg">
-                Our continuous focus and innovation are driven by our mission to simplify complete real estate for both individuals and corporations.
+              <h3 className="text-4xl font-bold text-[#232C5C] mb-6">White-Glove Service, <span className="text-[#F68036]">Elevated Results</span></h3>
+              <p className="text-[#232C5C] leading-relaxed mb-6 text-lg">
+                Founded by South Florida natives with a deep understanding of Miami's luxury lifestyle, For Rent Finders was created to transform the way discerning renters secure their next home.
+              </p>
+              <p className="text-[#232C5C] leading-relaxed mb-6">
+                We recognized a major gap—high-caliber clients were wasting valuable time with outdated listings and unresponsive leasing offices. So we built something different: a white-glove, concierge-style rental experience—completely free to you.
               </p>
               <p className="text-[#232C5C] leading-relaxed mb-8">
-                At For Rent Finders, we understand that finding the perfect apartment can be overwhelming. That's why we've dedicated ourselves to making the process as simple and stress-free as possible. Our team of licensed real estate professionals brings years of experience and local market knowledge to help you find not just any apartment, but the right apartment for your lifestyle and budget.
+                From sleek high-rises in Brickell to waterfront escapes in Fort Lauderdale, Miami Beach, Boca Raton, and the Palm Beaches, we curate only the best options tailored to your lifestyle.
               </p>
               <button className="border-2 border-[#F68036] text-[#F68036] hover:bg-[#F68036] hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 group">
                 Learn More About Us
@@ -163,18 +166,18 @@ const AboutSection = () => {
                 <div className="w-16 h-16 bg-[#F68036] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Building className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-3xl font-bold text-[#232C5C] mb-2">275+</div>
-                <div className="text-sm text-[#232C5C]">Global Office</div>
-                <div className="text-xs text-[#232C5C]">Locations worldwide</div>
+                <div className="text-3xl font-bold text-[#232C5C] mb-2">1,000+</div>
+                <div className="text-sm text-[#232C5C]">Successful Placements</div>
+                <div className="text-xs text-[#232C5C]">Across 3 counties</div>
               </div>
 
               <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
                 <div className="w-16 h-16 bg-[#F68036] rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-3xl font-bold text-[#232C5C] mb-2">425K+</div>
-                <div className="text-sm text-[#232C5C]">Worldwide Clients</div>
-                <div className="text-xs text-[#232C5C]">Satisfied customers</div>
+                <div className="text-3xl font-bold text-[#232C5C] mb-2">3</div>
+                <div className="text-sm text-[#232C5C]">Counties Covered</div>
+                <div className="text-xs text-[#232C5C]">Miami-Dade, Broward, Palm Beach</div>
               </div>
 
               <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
@@ -182,15 +185,15 @@ const AboutSection = () => {
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-3xl font-bold text-[#232C5C] mb-2">100%</div>
-                <div className="text-sm text-[#232C5C]">Satisfaction</div>
-                <div className="text-xs text-[#232C5C]">Client satisfaction rate</div>
+                <div className="text-sm text-[#232C5C]">Free Service</div>
+                <div className="text-xs text-[#232C5C]">No hidden fees ever</div>
               </div>
 
               <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
                 <div className="w-16 h-16 bg-[#F68036] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="w-8 h-8 text-white fill-current" />
                 </div>
-                <div className="text-3xl font-bold text-[#232C5C] mb-2">4/5</div>
+                <div className="text-3xl font-bold text-[#232C5C] mb-2">5.0</div>
                 <div className="text-sm text-[#232C5C]">Client Ratings</div>
                 <div className="text-xs text-[#232C5C]">Average review score</div>
               </div>
