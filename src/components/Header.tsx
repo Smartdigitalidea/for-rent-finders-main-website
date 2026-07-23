@@ -13,7 +13,7 @@ const Header = () => {
     { name: 'Home', href: '/', type: 'route' },
     { name: 'Properties', href: 'https://framed.smartapartmentdata.com/searchbasic.aspx?siteid=d32889aa-07d5-42d6-9649-4ade91e33f78&market=miami', type: 'external' },
     { name: 'About', href: '/about', type: 'route' },
-    { name: 'Blog', href: '/blog', type: 'route' }
+    { name: 'Blog', href: '/insights', type: 'route' }
   ];
 
   return (
